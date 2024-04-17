@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import java.util.Random;
 
 public class Player extends StackPane implements Runnable {
-    Circle circle = new Circle(10, Color.RED);
+    Circle circle = new Circle(10, Color.GREEN);
     String name;
     private int num = 0;
 
