@@ -18,3 +18,26 @@ public class Cell extends StackPane {
         border.setWidth(x);
     }
 }
+
+
+class AngleCell extends Cell {
+
+    public AngleCell() {
+        setSize(150, 150);
+    }
+}
+
+class BoardYCell extends Cell {
+
+    public BoardYCell() {
+        setSize(150, 90);
+    }
+}
+
+class Board extends Cell{
+
+    public Board(){
+        setSize(90, 150);
+    }
+
+}

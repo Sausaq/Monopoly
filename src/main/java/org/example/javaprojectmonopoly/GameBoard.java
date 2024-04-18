@@ -19,17 +19,17 @@ public class GameBoard extends GridPane {
 
         add(new AngleCell(), 0,0);
 
-        add(new BoardCell(), 1,0);
-        add(new BoardCell(), 2,0);
-        add(new BoardCell(), 3,0);
-        add(new BoardCell(), 4,0);
-        add(new BoardCell(), 5,0);
-        add(new BoardCell(), 6,0);
-        add(new BoardCell(), 7,0);
-        add(new BoardCell(), 8,0);
-        add(new BoardCell(), 9,0);
-        add(new BoardCell(), 10,0);
-        add(new BoardCell(), 11,0);
+        add(new Board(), 1,0);
+        add(new Board(), 2,0);
+        add(new Board(), 3,0);
+        add(new Board(), 4,0);
+        add(new Board(), 5,0);
+        add(new Board(), 6,0);
+        add(new Board(), 7,0);
+        add(new Board(), 8,0);
+        add(new Board(), 9,0);
+        add(new Board(), 10,0);
+        add(new Board(), 11,0);
 
         add(new AngleCell(), 12,0);
 
@@ -43,17 +43,17 @@ public class GameBoard extends GridPane {
 
         add(new AngleCell(), 12,8);
 
-        add(new BoardCell(), 11,8);
-        add(new BoardCell(), 10,8);
-        add(new BoardCell(), 9,8);
-        add(new BoardCell(), 8,8);
-        add(new BoardCell(), 7,8);
-        add(new BoardCell(), 6,8);
-        add(new BoardCell(), 5,8);
-        add(new BoardCell(), 4,8);
-        add(new BoardCell(), 3,8);
-        add(new BoardCell(), 2,8);
-        add(new BoardCell(), 1,8);
+        add(new Board(), 11,8);
+        add(new Board(), 10,8);
+        add(new Board(), 9,8);
+        add(new Board(), 8,8);
+        add(new Board(), 7,8);
+        add(new Board(), 6,8);
+        add(new Board(), 5,8);
+        add(new Board(), 4,8);
+        add(new Board(), 3,8);
+        add(new Board(), 2,8);
+        add(new Board(), 1,8);
 
         add(new AngleCell(), 0,8);
 
