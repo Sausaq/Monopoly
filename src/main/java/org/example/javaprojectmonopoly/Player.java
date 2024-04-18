@@ -1,6 +1,7 @@
 package org.example.javaprojectmonopoly;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -36,19 +37,27 @@ public class Player extends StackPane implements Runnable {
         }
     }
 
-    public void moving(GameBoard board) {
-        int step = rand() + rand();
+    public void moving(GameBoard board, int firstRandom, int secondRandom) {
+        int step = firstRandom + secondRandom;
         num = (num + step) % 40;
+
+        Label label = (Label)board.getChildren().get(44);
+        Label label2 = (Label)board.getChildren().get(45);
+        label.setText(String.valueOf(firstRandom));
+        label2.setText(String.valueOf(secondRandom));
 
         Cell current = (Cell) board.getChildren().get(num);
 
-        // Обновляем позицию игрока на игровом поле
         setTranslateX(current.getLayoutX());
         setTranslateY(current.getLayoutY());
     }
-     public int rand(){
+
+     public int[] rand(){
         Random rand = new Random();
-        return rand.nextInt(6) + 1;
+        int[] twoRandomNumbers = {
+                rand.nextInt(6) + 1,rand.nextInt(6) + 1
+        };
+        return twoRandomNumbers;
      }
 
     public int getNum() {

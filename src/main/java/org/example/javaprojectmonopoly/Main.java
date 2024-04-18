@@ -3,6 +3,7 @@ package org.example.javaprojectmonopoly;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,13 +20,19 @@ public class Main extends Application {
         board.getChildren().add(player2);
 
         Button button = new Button();
-        Button button2 = new Button();
+
 
         board.add(button, 5, 5);
-        board.add(button2, 5, 6);
 
-        button.setOnAction(event -> player.moving(board));
-        button2.setOnAction(event -> player2.moving(board));
+
+        board.add(new Label(), 4, 4);
+        board.add(new Label(), 5, 4);
+
+        button.setOnAction(event -> player.moving(board, player.rand()[0], player.rand()[1]));
+
+        for (int i = 0; i < board.getChildren().size(); i++) {
+            System.out.println( board.getChildren().get(i) + " " + i);
+        }
 
 
         Scene scene = new Scene(board, 800, 800);
