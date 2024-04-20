@@ -4,12 +4,19 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
+        MainScene mainScene = new MainScene();
         GameBoard board = new GameBoard();
+        UserList playersList = new UserList();
+        mainScene.getChildren().add(board);
+        mainScene.getChildren().add(playersList);
+
+        TextField tf = new TextField();
         Player player = new Player("Player1", 1);
         Player player2;
         player2 = new Player("Player2", 2);
@@ -18,7 +25,9 @@ public class Main extends Application {
         board.addPlayer(player2);
 
         board.getChildren().add(player);
+
         board.getChildren().add(player2);
+
 
         Button button = new Button();
 
@@ -36,7 +45,7 @@ public class Main extends Application {
         }
 
 
-        Scene scene = new Scene(board, 800, 800);
+        Scene scene = new Scene(mainScene, 800, 800);
 
         primaryStage.setScene(scene);
         primaryStage.setHeight(1000);
