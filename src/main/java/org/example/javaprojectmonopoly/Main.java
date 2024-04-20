@@ -28,7 +28,6 @@ public class Main extends Application {
 
         board.getChildren().add(player2);
 
-
         Button button = new Button();
 
 

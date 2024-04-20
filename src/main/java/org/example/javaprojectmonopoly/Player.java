@@ -47,7 +47,7 @@ public class Player extends StackPane {
         TranslateTransition transition3 = new TranslateTransition(Duration.seconds(1), this);
 
 //        int step = firstRandom + secondRandom;
-        int step =  Integer.parseInt(((TextField)board.getChildren().get(46)).getText());
+        int step = firstRandom + secondRandom;
         int firstCoordinates = num;
         int secondCoordinates = (num + step) % 40;
         num = (num + step) % 40;
