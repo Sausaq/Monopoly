@@ -4,9 +4,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class GameBoard extends GridPane {
-    private final int rows = 18; // Количество строк на доске
-    private final int cols = 13; // Количество столбцов на доске
-    private Pane playersContainer;
+    private final Pane playersContainer;
 
     public GameBoard() {
         super();
