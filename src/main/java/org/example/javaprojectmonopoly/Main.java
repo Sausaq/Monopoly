@@ -17,17 +17,15 @@ public class Main extends Application {
         mainScene.getChildren().addAll(board, playersList);
 
         Player player = new Player("Player1", 1);
-        Player player2;
-        player2 = new Player("Player2", 2);
+        Player player2 = new Player("Player2", 2);
 
         board.addPlayer(player);
         board.addPlayer(player2);
 
         board.getChildren().add(player);
-
         board.getChildren().add(player2);
 
-        Button button = new Button();
+        Button button = new Button("Move");
 
 
         board.add(button, 5, 5);
