@@ -4,7 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -16,27 +16,38 @@ import java.util.Random;
 public class Player extends StackPane {
     PauseTransition pause = new PauseTransition(Duration.seconds(1));
     Circle circle = new Circle(10, Color.GREEN);
-    private int num = 0;
+    private int index = 0;
+    private String name;
+    private int price = 1000;
 
-    public Player(String name, int playerNum){
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Player(String name, int playerNum, Color color){
         getChildren().add(circle);
-
+        this.name = name;
+        circle.setFill(color);
         switch (playerNum){
             case 1:
                 setAlignment(circle, Pos.TOP_LEFT);
-                setMargin(circle, new javafx.geometry.Insets(10, 0, 0, 10));
+                setMargin(circle, new javafx.geometry.Insets(25, 0, 0, 15));
                 break;
             case 2:
                 setAlignment(circle, Pos.TOP_RIGHT);
-                setMargin(circle, new javafx.geometry.Insets(10, 10, 0, 0));
+                setMargin(circle, new javafx.geometry.Insets(25, 80, 0, 0));
                 break;
             case 3:
                 setAlignment(circle, Pos.BOTTOM_LEFT);
-                setMargin(circle, new javafx.geometry.Insets(0, 0, 10, 10));
+                setMargin(circle, new javafx.geometry.Insets(0, 0, 75, 15));
                 break;
             case 4:
                 setAlignment(circle, Pos.BOTTOM_RIGHT);
-                setMargin(circle, new javafx.geometry.Insets(0, 10, 10, 0));
+                setMargin(circle, new javafx.geometry.Insets(0, 80, 75, 0));
                 break;
         }
     }
@@ -51,13 +62,12 @@ public class Player extends StackPane {
             TranslateTransition transition3 = new TranslateTransition(Duration.seconds(1), this);
 
             int step = firstRandom + secondRandom;
-            int firstCoordinates = num;
-            int secondCoordinates = (num + step) % 40;
-            num = (num + step) % 40;
+            int firstCoordinates = index;
+            int secondCoordinates = (index + step) % 40;
+            index = (index + step) % 40;
 
-
-            Label label = (Label) board.getChildren().get(44);
-            Label label2 = (Label) board.getChildren().get(45);
+            Label label = (Label) board.getChildren().get(40);
+            Label label2 = (Label) board.getChildren().get(41);
             label.setText(String.valueOf(firstRandom));
             label2.setText(String.valueOf(secondRandom));
 
@@ -123,7 +133,7 @@ public class Player extends StackPane {
 
                 });
 
-            } else if (firstCoordinates <= 39 && firstCoordinates >= 33 && secondCoordinates <= 11) {
+            } else if (firstCoordinates <= 39 && firstCoordinates >= 32 && secondCoordinates <= 11) {
                 transition.setToY(((Cell) board.getChildren().get(0)).getLayoutY());
 
                 transition.play();
@@ -147,7 +157,7 @@ public class Player extends StackPane {
 
     }
 
-     public int[] rand(){
+     public static int[] rand(){
         Random rand = new Random();
         int[] twoRandomNumbers = {
                 rand.nextInt(6) + 1,rand.nextInt(6) + 1
@@ -157,7 +167,7 @@ public class Player extends StackPane {
 
 
 
-    public int getNum() {
-        return num;
+    public int getIndex() {
+        return index;
     }
 }
