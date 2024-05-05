@@ -1,23 +1,19 @@
 package org.example.javaprojectmonopoly;
 
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class MainScene extends StackPane {
+public class Game extends StackPane {
     HBox boardAndUsers;
     ImageView background;
     GameBoard board;
     UserList playersList;
 
-    public MainScene(ArrayList<Player> players){
+    public Game(ArrayList<Player> players){
         background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
         boardAndUsers = new HBox();
 

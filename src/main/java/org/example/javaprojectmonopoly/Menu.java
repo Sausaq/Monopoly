@@ -18,16 +18,19 @@ public class Menu extends StackPane {
     private HBox menu;
     private VBox playersList = new VBox();
     private Font beaumaris = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/BeaumarisDemo-Regular.ttf", 30);
-    private ImageView background;
     private Button newPlayerButton = new Button("Новый игрок");
     private Button startButton = new Button("Начать игру");
+    private Button changePlayerButton = new Button("Изменить");
+
 
 
     private ArrayList<Player> addedPlayers = new ArrayList<>();
 
+    public Menu() {
+    }
 
-    public Menu(ArrayList<Player> players){
-        background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
+    public void playersField(ArrayList<Player> players) {
+        ImageView background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
         menu = new HBox();
         VBox leftSide = new VBox();
 
@@ -49,7 +52,6 @@ public class Menu extends StackPane {
         newPlayerButton.setOnMouseEntered(e -> newPlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
         newPlayerButton.setOnMouseExited(e -> newPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
 
-        Button changePlayerButton = new Button("Изменить");
         changePlayerButton.setFont(peaceSans);
         changePlayerButton.setPrefSize(640, 105);
         changePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
@@ -307,6 +309,10 @@ public class Menu extends StackPane {
 
     public Button getNewPlayerButton(){
         return newPlayerButton;
+    }
+
+    public Button getChangePlayerButton(){
+        return changePlayerButton;
     }
 
     public ArrayList<Player> getAddedPlayers() {

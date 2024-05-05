@@ -1,17 +1,13 @@
 package org.example.javaprojectmonopoly;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
 
 public class GameBoard extends GridPane {
-    private final Pane playersContainer;
     private int countOfPlayers;
     ArrayList<Player> players = new ArrayList<>();
     Button button = new Button("Move");
@@ -19,7 +15,6 @@ public class GameBoard extends GridPane {
     public GameBoard(ArrayList<Player> addedPlayers) {
         super();
         initialize();
-        playersContainer = new Pane();
         players = addedPlayers;
         countOfPlayers = addedPlayers.size();
         System.out.println(countOfPlayers);
@@ -111,8 +106,5 @@ public class GameBoard extends GridPane {
         add(new BoardYCell(), 0,2);
         add(new BoardYCell(), 0,1);
 
-        for (int i = 0; i < 40; i++) {
-//            setMargin(getChildren().get(i), new Insets(1));
-        }
     }
 }

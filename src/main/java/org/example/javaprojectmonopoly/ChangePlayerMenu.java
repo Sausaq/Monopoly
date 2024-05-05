@@ -4,19 +4,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 
-public class NewPlayerMenu extends StackPane {
-    private Button createButton = new Button("Новый игрок");
+public class ChangePlayerMenu extends StackPane {
+    private Button changeButton = new Button("Изменить");
     private Button cancelButton = new Button("Отмена");
 
 
 
-    public NewPlayerMenu() {
+    public ChangePlayerMenu() {
         ImageView background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
 
         Rectangle rectangle = new Rectangle(1200, 800);
@@ -28,6 +30,7 @@ public class NewPlayerMenu extends StackPane {
 
 
         VBox fields = new VBox();
+
         fields.setMaxSize(944, 638);
         ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.png");
         Font beaumaris = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/BeaumarisDemo-Regular.ttf", 30);
@@ -36,6 +39,33 @@ public class NewPlayerMenu extends StackPane {
 
         monopoly.setFitWidth(140);
         monopoly.setFitHeight(140);
+
+
+        Rectangle playerBackground = new Rectangle(200, 110);
+        playerBackground.setFill(Color.valueOf("#FF3131"));
+        playerBackground.setArcWidth(20);
+        playerBackground.setArcHeight(20);
+        Label playerLabel = new Label("Игрок");
+        playerLabel.setFont(beaumaris);
+        StackPane player = new StackPane(playerBackground, playerLabel);
+
+        Rectangle playerChooseBack = new Rectangle(720, 110);
+        playerChooseBack.setFill(Color.valueOf("#545454"));
+        playerChooseBack.setArcWidth(20);
+        playerChooseBack.setArcHeight(20);
+        playerChooseBack.setStroke(Color.BLACK);
+        playerChooseBack.setStrokeWidth(2);
+        TextField playerTextField = new TextField();
+        playerTextField.setFont(beaumaris);
+//        playerTextField.setStyle("-fx-background-color: #545454; -fx-text-base-color: white");
+        playerTextField.setMaxSize(700, 90);
+
+        StackPane playerChoose = new StackPane(playerChooseBack, playerTextField);
+        HBox.setMargin(playerChoose, new Insets(10,0,0,20));
+
+
+        HBox playerAndChoose = new HBox(player, playerChoose);
+
 
         Rectangle nameBackground = new Rectangle(200, 110);
         nameBackground.setFill(Color.valueOf("#FF3131"));
@@ -53,7 +83,7 @@ public class NewPlayerMenu extends StackPane {
         textFieldBack.setStrokeWidth(2);
         TextField nameTextField = new TextField();
         nameTextField.setFont(beaumaris);
-        nameTextField.setStyle("-fx-background-color: #545454; -fx-text-fill: white");
+//        nameTextField.setStyle("-fx-background-color: #545454; -fx-text-base-color: white");
         nameTextField.setMaxSize(700, 90);
         StackPane nameText = new StackPane(textFieldBack, nameTextField);
 
@@ -78,7 +108,7 @@ public class NewPlayerMenu extends StackPane {
 
         ColorPicker colorChoose = new ColorPicker();
         colorChoose.setMaxSize(700, 90);
-        colorChoose.setStyle("-fx-background-color: #545454; -fx-font-family: " + beaumaris.getName() + "; -fx-font-size:"  + beaumaris.getSize() + "px;");
+        colorChoose.setStyle("-fx-background-color: #545454;");
 
 
         StackPane colorChooseField = new StackPane(colorChooseBack, colorChoose);
@@ -91,12 +121,12 @@ public class NewPlayerMenu extends StackPane {
         HBox color = new HBox(colorText, colorChooseField);
 
         HBox buttons = new HBox();
-        createButton.setFont(peaceSans);
-        createButton.setPrefSize(400, 170);
-        createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        createButton.setOnMouseExited(e -> createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-        HBox.setMargin(createButton, new Insets(20,0,0,0));
+        changeButton.setFont(peaceSans);
+        changeButton.setPrefSize(400, 170);
+        changeButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
+        changeButton.setOnMouseEntered(e -> changeButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
+        changeButton.setOnMouseExited(e -> changeButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
+        HBox.setMargin(changeButton, new Insets(20,0,0,0));
 
         cancelButton.setFont(peaceSans);
         cancelButton.setPrefSize(400, 170);
@@ -105,17 +135,17 @@ public class NewPlayerMenu extends StackPane {
         cancelButton.setOnMouseExited(e -> cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
         HBox.setMargin(cancelButton, new Insets(20,0,0,144));
 
-        buttons.getChildren().addAll(createButton, cancelButton);
+        buttons.getChildren().addAll(changeButton, cancelButton);
 
-        fields.getChildren().addAll(monopoly, nameAndText, color, buttons);
+        fields.getChildren().addAll(monopoly, playerAndChoose, nameAndText, color, buttons);
 
-        createButton.setOnAction(e -> {
+        changeButton.setOnAction(e -> {
             Color selectedColor = colorChoose.getValue();
             String hexColor = String.format("#%02X%02X%02X",
                     (int) (selectedColor.getRed() * 255),
                     (int) (selectedColor.getGreen() * 255),
                     (int) (selectedColor.getBlue() * 255));
-            DBManager.insertPlayer(nameTextField.getText(), hexColor);
+            DBManager.updatePlayer(playerTextField.getText() , nameTextField.getText(), hexColor);
             System.out.println(nameTextField.getText() + hexColor);
         });
 
@@ -125,7 +155,7 @@ public class NewPlayerMenu extends StackPane {
     }
 
     public Button getCreate(){
-        return createButton;
+        return changeButton;
     }
 
     public Button getCancelButton(){

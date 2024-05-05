@@ -23,50 +23,25 @@ public class DBManager {
         }
     }
 
-//    public static void insertStaff(Staff staff){
-//        try {
-//            PreparedStatement statement = connection.prepareStatement(""  +
-//                    "INSERT INTO public.staff(lastname, firstname, mi, address, city, state, telephone)" +
-//                    "VALUES(?,?,?,?,?,?,?) ");
-//            statement.setString(1, staff.getLastName());
-//            statement.setString(2, staff.getFirstName());
-//            statement.setString(3, String.valueOf(staff.getMi()));
-//            statement.setString(4, staff.getAddress());
-//            statement.setString(5, staff.getCity());
-//            statement.setString(6, staff.getState());
-//            statement.setString(7, staff.getPhoneNumber());
-//
-//            statement.executeUpdate();
-//            statement.close();
-//        }catch (Exception e){
-//            System.out.println("Error");
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public static void updateStaff(Staff staff) {
-//        try {
-//            PreparedStatement statement = connection.prepareStatement("" +
-//                    "UPDATE public.staff \n" +
-//                    "SET lastname = ?, firstname = ?, mi = ?, address = ?, city = ?, state = ?, telephone = ? \n" +
-//                    "WHERE id = ? ");
-//            statement.setInt(8, staff.getId());
-//            statement.setString(1, staff.getLastName());
-//            statement.setString(2, staff.getFirstName());
-//            statement.setString(3, String.valueOf(staff.getMi()));
-//            statement.setString(4, staff.getAddress());
-//            statement.setString(5, staff.getCity());
-//            statement.setString(6, staff.getState());
-//            statement.setString(7, staff.getPhoneNumber());
-//
-//            statement.executeUpdate();
-//            statement.close();
-//        } catch (Exception e) {
-//            System.out.println("Error");
-//            e.printStackTrace();
-//        }
-//    }
-//
+
+    public static void updatePlayer(String oldName, String newName, String colorCode) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "UPDATE public.players \n" +
+                    "SET name = ?, color_code = ? \n" +
+                    "WHERE name = ?");
+            statement.setString(1, newName);
+            statement.setString(2, colorCode);
+            statement.setString(3, oldName);
+
+            statement.executeUpdate();
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+    }
+
     public static ArrayList<Player> getAllPlayers(){
         ArrayList<Player> players = new ArrayList<>();
         try {

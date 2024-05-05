@@ -40,7 +40,9 @@ public class Player extends StackPane {
         this.wins = wins;
         this.games = games;
         this.colorCode = colorCode;
-        circle = new Circle(10, Color.valueOf(colorCode));
+        circle = new Circle(13, Color.valueOf(colorCode));
+        circle.setStrokeWidth(1);
+        circle.setStroke(Color.BLACK);
     }
 
     public void addPlayerToBoard() {
@@ -56,11 +58,11 @@ public class Player extends StackPane {
                 break;
             case 3:
                 setAlignment(circle, Pos.BOTTOM_LEFT);
-                setMargin(circle, new javafx.geometry.Insets(0, 0, 75, 15));
+                setMargin(circle, new javafx.geometry.Insets(0, 0, 72, 15));
                 break;
             case 4:
                 setAlignment(circle, Pos.BOTTOM_RIGHT);
-                setMargin(circle, new javafx.geometry.Insets(0, 80, 75, 0));
+                setMargin(circle, new javafx.geometry.Insets(0, 80, 72, 0));
                 break;
         }
     }
@@ -180,12 +182,7 @@ public class Player extends StackPane {
 
     @Override
     public String toString() {
-        return "addPlayerToBoard{" +
-                "games=" + games +
-                ", wins=" + wins +
-                ", name='" + name + '\'' +
-                ", id=" + playerNum +
-                '}';
+        return name;
     }
 
     public int getWins() {
