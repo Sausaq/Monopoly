@@ -10,6 +10,7 @@ module org.example.javaprojectmonopoly {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens org.example.javaprojectmonopoly to javafx.fxml;
     exports org.example.javaprojectmonopoly;

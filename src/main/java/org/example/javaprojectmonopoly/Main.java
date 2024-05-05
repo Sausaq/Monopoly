@@ -1,40 +1,57 @@
 package org.example.javaprojectmonopoly;
 
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import java.security.Key;
 import java.util.ArrayList;
 
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
+        DBManager.connect();
 
-        MainScene gameWindow = new MainScene();
-        Menu menuBar = new Menu();
+        TestMenu menuBar = new TestMenu();
+        Menu menu = new Menu(DBManager.getAllPlayers());
 
-        Scene menu = new Scene(menuBar);
-        primaryStage.setScene(menu);
-        primaryStage.setHeight(1000);
+        NewPlayerMenu newPlayerMenu = new NewPlayerMenu();
+        Scene scene = new Scene(newPlayerMenu, 1500, 900);
+
+        Scene menuScene = new Scene(menu);
+//        menuScene.getStylesheets().add(getClass().
+//        getResource("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/exampl/javaprojectmonopoly/css/scrollPane.css").toExternalForm());
+
+        primaryStage.setScene(menuScene);
+        primaryStage.setHeight(900);
         primaryStage.setWidth(1500);
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Esc"));
+        primaryStage.setFullScreenExitHint("");
+        primaryStage.setFullScreen(true);
         primaryStage.setTitle("Monopoly Board");
         primaryStage.show();
 
-        menuBar.getGameStartButton().setOnAction(event -> {
-            GameBoard board = new GameBoard(menuBar.count());
-            UserList playersList = new UserList(board);
-            gameWindow.getChildren().addAll(board, playersList);
+//        menuBar.getGameStartButton().setOnAction(event -> {
+//            MainScene gameWindow = new MainScene(menuBar.count());
+//            Scene scene2 = new Scene(gameWindow, 1500, 900);
+//            primaryStage.setScene(scene2);
+//        });
 
-            Scene scene = new Scene(gameWindow, 800, 800);
-            primaryStage.setScene(scene);
+        menu.getNewPlayerButton().setOnAction(e -> primaryStage.setScene(scene));
+        newPlayerMenu.getCancelButton().setOnAction(b -> primaryStage.setScene(menuScene));
+        newPlayerMenu.getCreate().setOnAction(c -> primaryStage.setScene(menuScene));
 
-            for (int i = 0; i < board.getChildren().size(); i++) {
-                System.out.println(board.getChildren().get(i) + "  " + i);
-            }
+        menu.getStartButton().setOnAction(event -> {
+            MainScene gameWindow = new MainScene(menu.getAddedPlayers());
+            Scene scene2 = new Scene(gameWindow, 1500, 900);
+            primaryStage.setScene(scene2);
         });
+
+
+
     }
 
     public static void main(String[] args) {

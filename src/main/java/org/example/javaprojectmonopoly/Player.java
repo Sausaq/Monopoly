@@ -4,7 +4,6 @@ import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -15,10 +14,17 @@ import java.util.Random;
 
 public class Player extends StackPane {
     PauseTransition pause = new PauseTransition(Duration.seconds(1));
-    Circle circle = new Circle(10, Color.GREEN);
+    Circle circle;
     private int index = 0;
-    private String name;
     private int price = 1000;
+
+    private int id;
+    private String name;
+    private int wins;
+    private int games;
+    private String colorCode = "#FF3131";
+    private int playerNum;
+
 
     public String getName() {
         return name;
@@ -28,11 +34,18 @@ public class Player extends StackPane {
         return price;
     }
 
-    public Player(String name, int playerNum, Color color){
-        getChildren().add(circle);
+    public Player(int i, String name, int wins, int games, String colorCode) {
+        this.id = i;
         this.name = name;
-        circle.setFill(color);
-        switch (playerNum){
+        this.wins = wins;
+        this.games = games;
+        this.colorCode = colorCode;
+        circle = new Circle(10, Color.valueOf(colorCode));
+    }
+
+    public void addPlayerToBoard() {
+        getChildren().add(circle);
+        switch (playerNum) {
             case 1:
                 setAlignment(circle, Pos.TOP_LEFT);
                 setMargin(circle, new javafx.geometry.Insets(25, 0, 0, 15));
@@ -157,17 +170,37 @@ public class Player extends StackPane {
 
     }
 
-     public static int[] rand(){
+    public static int[] rand() {
         Random rand = new Random();
         int[] twoRandomNumbers = {
-                rand.nextInt(6) + 1,rand.nextInt(6) + 1
+                rand.nextInt(6) + 1, rand.nextInt(6) + 1
         };
         return twoRandomNumbers;
-     }
+    }
 
+    @Override
+    public String toString() {
+        return "addPlayerToBoard{" +
+                "games=" + games +
+                ", wins=" + wins +
+                ", name='" + name + '\'' +
+                ", id=" + playerNum +
+                '}';
+    }
 
+    public int getWins() {
+        return wins;
+    }
 
-    public int getIndex() {
-        return index;
+    public int getGames() {
+        return games;
+    }
+
+    public String getColorCode() {
+        return colorCode;
+    }
+
+    public void setPlayerNum(int playerNum) {
+        this.playerNum = playerNum;
     }
 }

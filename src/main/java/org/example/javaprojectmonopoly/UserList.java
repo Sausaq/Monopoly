@@ -6,20 +6,13 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 public class UserList extends VBox {
-    public UserList(GameBoard board) {
-        PlayerInfoPane playerInfoPane1 = new PlayerInfoPane(((Player)board.getChildren().get(42)).getName());
-        PlayerInfoPane playerInfoPane2 = new PlayerInfoPane(((Player)board.getChildren().get(43)).getName());
-        PlayerInfoPane playerInfoPane3 = new PlayerInfoPane(((Player)board.getChildren().get(44)).getName());
-        PlayerInfoPane playerInfoPane4 = new PlayerInfoPane(((Player)board.getChildren().get(45)).getName());
-        getChildren().add(playerInfoPane1);
-        getChildren().add(playerInfoPane2);
-        getChildren().add(playerInfoPane3);
-        getChildren().add(playerInfoPane4);
-
+    public UserList(ArrayList<Player> players) {
+        getChildren().add(new PlayerInfoPane(players.getFirst().getName()));
         setMargin(getChildren().getFirst(), new Insets(0, 17, 17, 17));
-        setMargin(getChildren().get(1), new Insets(17));
-        setMargin(getChildren().get(2), new Insets(17));
-        setMargin(getChildren().get(3), new Insets(17));
+        for (int i = 1; i < players.size(); i++) {
+            getChildren().add(new PlayerInfoPane(players.get(i).getName()));
+            setMargin(getChildren().get(i), new Insets(17));
+        }
 
     }
 }
