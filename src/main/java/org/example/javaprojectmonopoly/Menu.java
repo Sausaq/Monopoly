@@ -41,7 +41,7 @@ public class Menu extends StackPane {
         leftSideRectangle1.setArcHeight(50);
 
 
-        ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.png");
+        ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.jpg");
         Font peaceSans = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf", 36);
 
         monopoly.setFitHeight(91);

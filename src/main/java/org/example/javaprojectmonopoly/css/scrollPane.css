@@ -1,3 +1,9 @@
-.scroll-pane {
-    -fx-background-color: red;
+@font-face {
+    font-family: 'MyFont';
+    src: url('path/to/font.ttf');
+}
+
+.button {
+    -fx-font-family: 'MyFont';
+    -fx-font-size: 18px;
 }

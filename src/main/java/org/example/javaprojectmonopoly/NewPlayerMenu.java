@@ -3,6 +3,7 @@ package org.example.javaprojectmonopoly;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,7 +18,7 @@ public class NewPlayerMenu extends StackPane {
 
 
     public NewPlayerMenu() {
-        ImageView background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
+        ImageView background = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/background.png")));
 
         Rectangle rectangle = new Rectangle(1200, 800);
         rectangle.setFill(Color.valueOf("#A6A6A6"));
@@ -29,9 +30,7 @@ public class NewPlayerMenu extends StackPane {
 
         VBox fields = new VBox();
         fields.setMaxSize(944, 638);
-        ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.png");
-        Font peaceSans = Font.loadFont("file:src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf", 36);
-        Font beaumaris = Font.loadFont("file:src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf", 36);
+        ImageView monopoly = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/monopoly_icon.jpg")));
 
         monopoly.setFitWidth(140);
         monopoly.setFitHeight(140);
@@ -40,8 +39,10 @@ public class NewPlayerMenu extends StackPane {
         nameBackground.setFill(Color.valueOf("#FF3131"));
         nameBackground.setArcWidth(20);
         nameBackground.setArcHeight(20);
+
         Label nameLabel = new Label("Имя");
-        nameLabel.setFont(beaumaris);
+        nameLabel.setFont(Font.font(20));
+
         StackPane name = new StackPane(nameBackground, nameLabel);
 
         Rectangle textFieldBack = new Rectangle(720, 110);
@@ -51,7 +52,7 @@ public class NewPlayerMenu extends StackPane {
         textFieldBack.setStroke(Color.BLACK);
         textFieldBack.setStrokeWidth(2);
         TextField nameTextField = new TextField();
-        nameTextField.setFont(beaumaris);
+        nameTextField.setFont(Font.font(20));
         nameTextField.setStyle("-fx-background-color: #545454; -fx-text-fill: white");
         nameTextField.setMaxSize(700, 90);
         StackPane nameText = new StackPane(textFieldBack, nameTextField);
@@ -65,7 +66,8 @@ public class NewPlayerMenu extends StackPane {
         colorTextBackground.setArcWidth(20);
         colorTextBackground.setArcHeight(20);
         Label colorLabel = new Label("Цвет");
-        colorLabel.setFont(beaumaris);
+        colorLabel.setFont(Font.font(20));
+
         StackPane colorText = new StackPane(colorTextBackground, colorLabel);
 
         Rectangle colorChooseBack = new Rectangle(720, 110);
@@ -77,7 +79,7 @@ public class NewPlayerMenu extends StackPane {
 
         ColorPicker colorChoose = new ColorPicker();
         colorChoose.setMaxSize(700, 90);
-        colorChoose.setStyle("-fx-background-color: #545454; -fx-font-family: " + beaumaris.getName() + "; -fx-font-size:"  + beaumaris.getSize() + "px;");
+        colorChoose.setStyle("-fx-background-color: #545454");
 
 
         StackPane colorChooseField = new StackPane(colorChooseBack, colorChoose);
@@ -90,18 +92,17 @@ public class NewPlayerMenu extends StackPane {
         HBox color = new HBox(colorText, colorChooseField);
 
         HBox buttons = new HBox();
-        createButton.setFont(peaceSans);
         createButton.setPrefSize(400, 170);
-        createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        createButton.setOnMouseExited(e -> createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
+        createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;  -fx-font-size: 20;");
+        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20;")); // Красный при наведении
+        createButton.setOnMouseExited(e -> createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20;")); // Возвращаем белый цвет
         HBox.setMargin(createButton, new Insets(20,0,0,0));
 
-        cancelButton.setFont(peaceSans);
+
         cancelButton.setPrefSize(400, 170);
-        cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        cancelButton.setOnMouseEntered(e -> cancelButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        cancelButton.setOnMouseExited(e -> cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
+        cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20");
+        cancelButton.setOnMouseEntered(e -> cancelButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20")); // Красный при наведении
+        cancelButton.setOnMouseExited(e -> cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20")); // Возвращаем белый цвет
         HBox.setMargin(cancelButton, new Insets(20,0,0,144));
 
         buttons.getChildren().addAll(createButton, cancelButton);
