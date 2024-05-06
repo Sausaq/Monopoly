@@ -20,7 +20,7 @@ public class ChangePlayerMenu extends StackPane {
 
 
     public ChangePlayerMenu() {
-        ImageView background = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/background.png")));
+        ImageView background = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/background.png")));
 
         Rectangle rectangle = new Rectangle(1200, 800);
         rectangle.setFill(Color.valueOf("#A6A6A6"));
@@ -33,7 +33,7 @@ public class ChangePlayerMenu extends StackPane {
         VBox fields = new VBox();
 
         fields.setMaxSize(944, 638);
-        ImageView monopoly = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/monopoly_icon.jpg")));
+        ImageView monopoly = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/monopoly_icon.jpg")));
 
         monopoly.setFitWidth(140);
         monopoly.setFitHeight(140);

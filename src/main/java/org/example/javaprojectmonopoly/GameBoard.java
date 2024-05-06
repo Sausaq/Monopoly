@@ -5,9 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -43,7 +41,7 @@ public class GameBoard extends GridPane {
         button.setOnAction(event -> playersMoving());
     }
 
-    ImageView flagUSA = new ImageView(new Image( getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/images/usa.png")));
+    ImageView flagUSA = new ImageView(new Image( getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/flags/usa.png")));
 
 
     private int queue = 0;
