@@ -30,9 +30,8 @@ public class NewPlayerMenu extends StackPane {
         VBox fields = new VBox();
         fields.setMaxSize(944, 638);
         ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.png");
-        Font beaumaris = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/BeaumarisDemo-Regular.ttf", 30);
-        Font peaceSans = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf", 36);
-
+        Font peaceSans = Font.loadFont(getClass().getResourceAsStream("src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf"), 36);
+        Font beaumaris = Font.loadFont(getClass().getResourceAsStream("src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf"), 36);
 
         monopoly.setFitWidth(140);
         monopoly.setFitHeight(140);
