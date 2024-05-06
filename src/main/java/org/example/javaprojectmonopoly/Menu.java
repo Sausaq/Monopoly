@@ -24,6 +24,7 @@ public class Menu extends StackPane {
 
 
 
+
     private ArrayList<Player> addedPlayers = new ArrayList<>();
 
     public Menu() {

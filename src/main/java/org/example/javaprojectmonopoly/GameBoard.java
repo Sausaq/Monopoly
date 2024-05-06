@@ -1,8 +1,12 @@
 package org.example.javaprojectmonopoly;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -11,6 +15,11 @@ public class GameBoard extends GridPane {
     private int countOfPlayers;
     ArrayList<Player> players = new ArrayList<>();
     Button button = new Button("Move");
+
+    private Board board2 = new Board();
+    private Board board1 = new Board();
+
+
 
     public GameBoard(ArrayList<Player> addedPlayers) {
         super();
@@ -32,6 +41,9 @@ public class GameBoard extends GridPane {
         add(button, 5, 5);
         button.setOnAction(event -> playersMoving());
     }
+
+    ImageView flagUSA = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
+
 
     private int queue = 0;
     private void playersMoving(){
@@ -57,11 +69,25 @@ public class GameBoard extends GridPane {
         return players;
     }
 
+
     private void initialize() {
+        ImageView flagUSA2 = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
+        flagUSA.setFitHeight(45);
+        flagUSA.setFitWidth(45);
+
         add(new AngleCell(), 0,0);
 
-        add(new Board(), 1,0);
-        add(new Board(), 2,0);
+        board1.getChildren().add(Flags.getFlagUSA());
+        board1.setAlignment(Pos.TOP_CENTER);
+
+        board2.getChildren().add(Flags.getFlagUSA());
+        board2.setAlignment(Pos.TOP_CENTER);
+
+
+//        players.get(1).addCompany(board1);
+
+        add(board1, 1,0);
+        add(board2, 2,0);
         add(new Board(), 3,0);
         add(new Board(), 4,0);
         add(new Board(), 5,0);
@@ -105,6 +131,7 @@ public class GameBoard extends GridPane {
         add(new BoardYCell(), 0,3);
         add(new BoardYCell(), 0,2);
         add(new BoardYCell(), 0,1);
+
 
     }
 }

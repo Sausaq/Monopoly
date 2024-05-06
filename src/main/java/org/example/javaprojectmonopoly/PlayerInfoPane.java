@@ -27,7 +27,7 @@ public class PlayerInfoPane extends HBox {
     }
 
     public PlayerInfoPane(String name) {
-        icon = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/img.png");
+        icon = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
         icon.setFitWidth(157);
         icon.setFitHeight(157);
         setMaxWidth(500);

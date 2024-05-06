@@ -8,13 +8,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.animation.TranslateTransition;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends StackPane {
-    PauseTransition pause = new PauseTransition(Duration.seconds(1));
-    Circle circle;
+    private PauseTransition pause = new PauseTransition(Duration.seconds(1));
+    private Circle circle;
     private int index = 0;
     private int price = 1000;
 
@@ -24,6 +26,8 @@ public class Player extends StackPane {
     private int games;
     private String colorCode = "#FF3131";
     private int playerNum;
+
+    private ArrayList<Cell> companiesList;
 
 
     public String getName() {
@@ -43,6 +47,12 @@ public class Player extends StackPane {
         circle = new Circle(13, Color.valueOf(colorCode));
         circle.setStrokeWidth(1);
         circle.setStroke(Color.BLACK);
+        companiesList = new ArrayList<>();
+    }
+
+    public void addCompany(Cell company){
+        companiesList.add(company);
+        company.getChildren().add(new Rectangle(10, 10, Color.valueOf(colorCode)));
     }
 
     public void addPlayerToBoard() {
