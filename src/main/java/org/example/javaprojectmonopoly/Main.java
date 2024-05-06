@@ -23,7 +23,7 @@ public class Main extends Application {
         ChangePlayerMenu changePlayerMenu = new ChangePlayerMenu();
         Scene changePlayerScene = new Scene(changePlayerMenu, 1500, 900);
 
-        stage.setScene(newPlayerScene);
+        stage.setScene(menuScene);
         stage.setHeight(900);
         stage.setWidth(1500);
         stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Esc"));

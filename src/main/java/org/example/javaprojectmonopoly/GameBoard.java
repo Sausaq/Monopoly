@@ -3,6 +3,7 @@ package org.example.javaprojectmonopoly;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
@@ -42,7 +43,7 @@ public class GameBoard extends GridPane {
         button.setOnAction(event -> playersMoving());
     }
 
-    ImageView flagUSA = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
+    ImageView flagUSA = new ImageView(new Image( getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/images/usa.png")));
 
 
     private int queue = 0;
@@ -71,7 +72,6 @@ public class GameBoard extends GridPane {
 
 
     private void initialize() {
-        ImageView flagUSA2 = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
         flagUSA.setFitHeight(45);
         flagUSA.setFitWidth(45);
 
@@ -82,9 +82,6 @@ public class GameBoard extends GridPane {
 
         board2.getChildren().add(Flags.getFlagUSA());
         board2.setAlignment(Pos.TOP_CENTER);
-
-
-//        players.get(1).addCompany(board1);
 
         add(board1, 1,0);
         add(board2, 2,0);

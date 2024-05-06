@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class Menu extends StackPane {
     private HBox menu;
     private VBox playersList = new VBox();
-    private Font beaumaris = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/BeaumarisDemo-Regular.ttf", 30);
+    private Font beaumaris = Font.font(20);
     private Button newPlayerButton = new Button("Новый игрок");
     private Button startButton = new Button("Начать игру");
     private Button changePlayerButton = new Button("Изменить");
@@ -31,7 +32,7 @@ public class Menu extends StackPane {
     }
 
     public void playersField(ArrayList<Player> players) {
-        ImageView background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
+        ImageView background = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/background.png")));
         menu = new HBox();
         VBox leftSide = new VBox();
 
@@ -41,8 +42,8 @@ public class Menu extends StackPane {
         leftSideRectangle1.setArcHeight(50);
 
 
-        ImageView monopoly = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/monopoly_icon.jpg");
-        Font peaceSans = Font.loadFont("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/css/peaceSans.ttf", 36);
+        ImageView monopoly = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/monopoly_icon.jpg")));
+        Font peaceSans = Font.font(36);
 
         monopoly.setFitHeight(91);
         monopoly.setFitWidth(91);
@@ -171,7 +172,7 @@ public class Menu extends StackPane {
             winsBackground.setStrokeWidth(2);
             winsBackground.setStroke(Color.BLACK);
 
-            ImageView corona = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/corona.png");
+            ImageView corona = new ImageView(new Image( getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/corona.png")));
             corona.setFitWidth(94);
             corona.setFitHeight(47);
 
@@ -194,7 +195,7 @@ public class Menu extends StackPane {
             gamesBackground.setStrokeWidth(2);
             gamesBackground.setStroke(Color.BLACK);
 
-            ImageView gamepad = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/gamepad.png");
+            ImageView gamepad = new ImageView(new Image( getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/gamepad.png")));
             gamepad.setFitWidth(94);
             gamepad.setFitHeight(55);
 

@@ -79,9 +79,6 @@ public class Player extends StackPane {
 
     public void moving(GameBoard board, int firstRandom, int secondRandom) {
         if (!pause.getStatus().equals(Animation.Status.RUNNING)) {
-            // Логика обработки первого нажатия
-            System.out.println("Кнопка нажата");
-
             TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
             TranslateTransition transition2 = new TranslateTransition(Duration.seconds(1), this);
             TranslateTransition transition3 = new TranslateTransition(Duration.seconds(1), this);
