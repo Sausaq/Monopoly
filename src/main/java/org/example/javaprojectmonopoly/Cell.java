@@ -132,6 +132,14 @@ public class Cell extends StackPane {
         }
     }
 
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
     public void setSize(int x, int y) {
         border.setHeight(y);
         border.setWidth(x);

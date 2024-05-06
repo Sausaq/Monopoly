@@ -31,7 +31,7 @@ public class Main extends Application {
         stage.setFullScreen(true);
         stage.setTitle("Monopoly Board");
         stage.show();
-
+        //
         menu.getNewPlayerButton().setOnAction(e -> stage.setScene(newPlayerScene));
         menu.getChangePlayerButton().setOnAction(e -> stage.setScene(changePlayerScene));
         newPlayerMenu.getCancelButton().setOnAction(b -> stage.setScene(menuScene));
