@@ -1,21 +1,135 @@
 package org.example.javaprojectmonopoly;
 
-import javafx.geometry.Insets;
+import javafx.geometry.Insets;import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Cell extends StackPane {
-    Rectangle border = new Rectangle();
+    private Rectangle border = new Rectangle();
+    private int cost;
+    private int x;
+    private int y;
 
-    public Cell(){
+
+    public Cell(int type, int x, int y){
+        this.x = x;
+        this.y = y;
         border.setFill(Color.valueOf("#FFBD59"));
         border.setStroke(Color.BLACK);
         border.setArcWidth(10);
         border.setArcHeight(10);
         setMargin(border, new Insets(1));
 
+        switch (type){
+            case 1:
+                setSize(150, 150);
+                break;
+            case 2:
+                setSize(90, 150);
+                break;
+            case 3:
+                setSize(150, 90);
+                break;
+            default:
+                System.out.println("NIFIGA");
+
+        }
+
         getChildren().add(border);
+    }
+
+
+    public Cell(int type, int x, int y, ImageView flag, int cost){
+        this.x = x;
+        this.y = y;
+        this.cost = cost;
+        border.setFill(Color.valueOf("#FFBD59"));
+        border.setStroke(Color.BLACK);
+        border.setArcWidth(10);
+        border.setArcHeight(10);
+        setMargin(border, new Insets(1));
+        getChildren().add(border);
+
+        flag.setFitWidth(40);
+        flag.setFitHeight(40);
+        Label label = new Label(String.valueOf(cost) + " $");
+
+        switch (type){
+            case 1:
+                setSize(150, 150);
+                break;
+            case 2:
+                if (y == 0) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.getChildren().addAll(flag, label);
+                    companyAndCost.setAlignment(Pos.TOP_CENTER);
+                    setMargin(companyAndCost, new Insets(10, 0, 0, 0));
+                } else if (y == 7) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.setAlignment(Pos.BOTTOM_CENTER);
+                    companyAndCost.getChildren().addAll(label, flag);
+                    setMargin(companyAndCost, new Insets(0, 0, 10, 0));
+                }
+                setSize(90, 150);
+                break;
+            case 3:
+                if (x == 0) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.getChildren().addAll(flag, label);
+                    companyAndCost.setAlignment(Pos.CENTER_LEFT);
+                    setMargin(companyAndCost, new Insets(0, 0, 0, 10));
+                } else if (x == 12) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.setAlignment(Pos.CENTER_RIGHT);
+                    companyAndCost.getChildren().addAll(flag, label);
+                    setMargin(companyAndCost, new Insets(0, 10, 0, 0));
+                }
+                setSize(150, 90);
+                break;
+            default:
+                System.out.println("NIFIGA");
+
+        }
+    }
+
+    public Cell(int type, int x, int y, ImageView flag, int cost, ImageView company){
+        this.x = x;
+        this.y = y;
+        this.cost = cost;
+        border.setFill(Color.valueOf("#FFBD59"));
+        border.setStroke(Color.BLACK);
+        border.setArcWidth(10);
+        border.setArcHeight(10);
+        setMargin(border, new Insets(1));
+        getChildren().add(border);
+
+        flag.setFitWidth(45);
+        flag.setFitHeight(45);
+        getChildren().addAll(flag, company);
+
+        switch (type){
+            case 1:
+                setSize(150, 150);
+                break;
+            case 2:
+                setSize(90, 150);
+                break;
+            case 3:
+                setSize(150, 90);
+                break;
+            default:
+                System.out.println("NIFIGA");
+
+        }
     }
 
     public void setSize(int x, int y) {
@@ -24,23 +138,3 @@ public class Cell extends StackPane {
     }
 }
 
-class AngleCell extends Cell {
-
-    public AngleCell() {
-        setSize(150, 150);
-    }
-}
-
-class BoardYCell extends Cell {
-
-    public BoardYCell() {
-        setSize(150, 90);
-    }
-}
-
-class Board extends Cell{
-
-    public Board(){
-        setSize(90, 150);
-    }
-}

@@ -19,6 +19,7 @@ public class Player extends StackPane {
     private Circle circle;
     private int index = 0;
     private int price = 1000;
+    private ArrayList<Cell> companies = new ArrayList<>();
 
     private int id;
     private String name;
@@ -85,11 +86,11 @@ public class Player extends StackPane {
 
             int step = firstRandom + secondRandom;
             int firstCoordinates = index;
-            int secondCoordinates = (index + step) % 40;
-            index = (index + step) % 40;
+            int secondCoordinates = (index + step) % 36;
+            index = (index + step) % 36;
 
-            Label label = (Label) board.getChildren().get(40);
-            Label label2 = (Label) board.getChildren().get(41);
+            Label label = (Label) board.getChildren().get(38);
+            Label label2 = (Label) board.getChildren().get(39);
             label.setText(String.valueOf(firstRandom));
             label2.setText(String.valueOf(secondRandom));
 
@@ -112,19 +113,19 @@ public class Player extends StackPane {
                     transition2.setToY(endLayoutY);
                     transition2.play();
                 });
-            } else if (firstCoordinates <= 11 && secondCoordinates >= 19) {
+            } else if (firstCoordinates <= 11 && secondCoordinates >= 20) {
                 transition.setToX(((Cell) board.getChildren().get(12)).getLayoutX());
                 transition.play();
                 transition.setOnFinished(event -> {
-                    transition2.setToY(((Cell) board.getChildren().get(20)).getLayoutY());
+                    transition2.setToY(((Cell) board.getChildren().get(19)).getLayoutY());
                     transition2.play();
                     transition2.setOnFinished(event1 -> {
                         transition3.setToX(endLayoutX);
                         transition3.play();
                     });
                 });
-            } else if (firstCoordinates <= 19 && secondCoordinates >= 21) {
-                transition.setToY(((Cell) board.getChildren().get(20)).getLayoutY());
+            } else if (firstCoordinates <= 18 && secondCoordinates >= 20) {
+                transition.setToY(((Cell) board.getChildren().get(19)).getLayoutY());
 
                 transition.play();
                 transition.setOnFinished(event -> {
@@ -133,8 +134,8 @@ public class Player extends StackPane {
                     transition2.play();
                 });
 
-            } else if (firstCoordinates <= 31 && secondCoordinates >= 33 && secondCoordinates <= 39) {
-                transition.setToX(((Cell) board.getChildren().get(32)).getLayoutX());
+            } else if (firstCoordinates <= 30 && secondCoordinates >= 32 && secondCoordinates <= 37) {
+                transition.setToX(((Cell) board.getChildren().get(31)).getLayoutX());
 
                 transition.play();
                 transition.setOnFinished(event -> {
@@ -142,8 +143,8 @@ public class Player extends StackPane {
 
                     transition2.play();
                 });
-            } else if (firstCoordinates <= 31 && firstCoordinates >= 21 && secondCoordinates <= 11) {
-                transition.setToX(((Cell) board.getChildren().get(32)).getLayoutX());
+            } else if (firstCoordinates <= 30 && firstCoordinates >= 20 && secondCoordinates <= 11) {
+                transition.setToX(((Cell) board.getChildren().get(31)).getLayoutX());
                 transition.play();
                 transition.setOnFinished(event -> {
                     transition2.setToY(((Cell) board.getChildren().get(0)).getLayoutY());
@@ -155,7 +156,7 @@ public class Player extends StackPane {
 
                 });
 
-            } else if (firstCoordinates <= 39 && firstCoordinates >= 32 && secondCoordinates <= 11) {
+            } else if (firstCoordinates <= 37 && firstCoordinates >= 31 && secondCoordinates <= 11) {
                 transition.setToY(((Cell) board.getChildren().get(0)).getLayoutY());
 
                 transition.play();
