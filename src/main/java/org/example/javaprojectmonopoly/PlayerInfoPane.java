@@ -3,6 +3,7 @@ package org.example.javaprojectmonopoly;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
@@ -13,7 +14,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 public class PlayerInfoPane extends HBox {
-    private ImageView icon;
     private Label playerBalanceLabel;
     private VBox nameAndBalance;
     private int price;
@@ -27,7 +27,7 @@ public class PlayerInfoPane extends HBox {
     }
 
     public PlayerInfoPane(String name) {
-        icon = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/java/org/example/javaprojectmonopoly/images/usa.png");
+        ImageView icon = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/flags/usa.png")));
         icon.setFitWidth(157);
         icon.setFitHeight(157);
         setMaxWidth(500);

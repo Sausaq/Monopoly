@@ -1,6 +1,7 @@
 package org.example.javaprojectmonopoly;
 
 import javafx.geometry.Insets;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -14,7 +15,7 @@ public class Game extends StackPane {
     UserList playersList;
 
     public Game(ArrayList<Player> players){
-        background = new ImageView("file:/D:/IntelijIDEA_Projects/JavaProjectMonopoly/src/main/resources/org/example/javaprojectmonopoly/background.png");
+        background = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/images/background.png")));
         boardAndUsers = new HBox();
 
         board = new GameBoard(players);
