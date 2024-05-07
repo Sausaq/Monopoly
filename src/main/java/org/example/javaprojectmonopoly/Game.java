@@ -19,11 +19,12 @@ public class Game extends StackPane {
         boardAndUsers = new HBox();
 
         board = new GameBoard(players);
-        HBox.setMargin(board, new Insets(0, 10, 0, 100));
+        HBox.setMargin(board, new Insets(0, 10, 0, 75));
         playersList = new UserList(board.getPlayers());
         boardAndUsers.getChildren().addAll(board, playersList);
 
         getChildren().addAll(background, boardAndUsers);
+        setMargin(boardAndUsers, new Insets(30,0,0,0));
         for (int i = 0; i < board.getChildren().size(); i++) {
             System.out.println(board.getChildren().get(i) + "  " + i);
 //            System.out.println( this.getChildren().get(i) + " " + i);

@@ -1,18 +1,29 @@
 package org.example.javaprojectmonopoly;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
 
 public class GameBoard extends GridPane {
     private int countOfPlayers;
-    ArrayList<Player> players = new ArrayList<>();
-    Button moveButton = new Button("Move");
-    Button buyButton = new Button("Buy");
+    private ArrayList<Player> players = new ArrayList<>();
+    private Button moveButton = new Button("Move");
+    private Button buyButton = new Button("Buy");
+    private int queue = 0;
     private ArrayList<Cell> cells = new ArrayList<>();
+
+    private StackPane avatar = new StackPane();
 
     {
         cells.add(new Cell(1, 0, 0));
@@ -61,6 +72,7 @@ public class GameBoard extends GridPane {
         cells.add(new Cell(3, 0, 2, Flags.getFlagUSA(), 350000));
         cells.add(new Cell(3, 0, 1, Flags.getFlagUSA(), 400000));
     }
+    private Label dieNumer = new Label();
 
     public GameBoard(ArrayList<Player> addedPlayers) {
         super();
@@ -72,31 +84,61 @@ public class GameBoard extends GridPane {
         add(new Label(), 4, 4);
         add(new Label(), 5, 4);
 
-        for (int i = 0; i < addedPlayers.size(); i++) {
-            getChildren().add(players.get(i));
-            addedPlayers.get(i).addPlayerToBoard();
+        for (Player player : players) {
+            getChildren().add(player);
+            player.addPlayerToBoard();
         }
 
-        add(moveButton, 5, 5);
-        add(buyButton, 5, 6);
         moveButton.setOnAction(event -> playersMoving());
+
+        Rectangle buttonsBackground = new Rectangle(450, 270, Color.valueOf("#A6A6A6"));
+        buttonsBackground.setStroke(Color.BLACK);
+        buttonsBackground.setStrokeWidth(2);
+
+        Circle circle = new Circle(55);
+        circle.setFill(Color.valueOf(players.get(queue).getColorCode()));
+        circle.setStrokeWidth(2);
+        circle.setStroke(Color.BLACK);
+        Rectangle avatarBackground = new Rectangle(146, 146);
+        avatarBackground.setFill(Color.valueOf("#FF3131"));
+        avatarBackground.setArcWidth(50);
+        avatarBackground.setArcHeight(50);
+        avatarBackground.setStrokeWidth(2);
+        avatarBackground.setStroke(Color.BLACK);
+        avatar.getChildren().addAll(avatarBackground, circle);
+        HBox.setMargin(avatar, new Insets(0, 0, 0, 36));
+
+        VBox avatarAndName = new VBox(avatar);
+
+        HBox avatarAndButtons = new HBox(avatarAndName, moveButton, buyButton, dieNumer);
+        avatarAndButtons.setMaxSize(450, 270);
+        avatarAndButtons.setAlignment(Pos.CENTER_LEFT);
+
+        StackPane buttonsPane = new StackPane(buttonsBackground, avatarAndButtons);
+        add(buttonsPane, 3, 2);
+        setColumnSpan(buttonsPane, 5);
+        setRowSpan(buttonsPane, 4);
+
     }
 
-
-    private int queue = 0;
     private void playersMoving(){
+        ((Circle)avatar.getChildren().get(1)).setFill(Color.valueOf(players.get(queue).getColorCode()));
+        int firstRandom = Player.rand()[0];
+        int secondRandom = Player.rand()[1];
+        dieNumer.setText(String.valueOf(firstRandom) + "   " + String.valueOf(secondRandom));
+
 
         if (queue == 0) {
-            players.getFirst().moving(this, Player.rand()[0], Player.rand()[1]);
+            players.getFirst().moving(cells, firstRandom, secondRandom);
             queue = (queue + 1) % countOfPlayers;
         } else if (queue == 1) {
-            players.get(1).moving(this, Player.rand()[0], Player.rand()[1]);
+            players.get(1).moving(cells, firstRandom, secondRandom);
             queue = (queue + 1) % countOfPlayers;
         } else if (queue == 2) {
-            players.get(2).moving(this, Player.rand()[0], Player.rand()[1]);
+            players.get(2).moving(cells, firstRandom, secondRandom);
             queue = (queue + 1) % countOfPlayers;
         } else if (queue == 3) {
-            players.get(3).moving(this, Player.rand()[0], Player.rand()[1]);
+            players.get(3).moving(cells, firstRandom, secondRandom);
             queue = (queue + 1) % countOfPlayers;
         } else {
             System.out.println("Error" + queue);
