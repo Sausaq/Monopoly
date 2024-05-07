@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DBManager {
     private static final String url = "jdbc:postgresql://localhost/Monopoly";
     private static final String user = "postgres";
-    private static final String password = "Nadi.3344";
+    private static final String password = "123";
     private static Connection connection;
 
     public static void connect() {

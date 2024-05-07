@@ -179,7 +179,6 @@ public class Player extends StackPane {
         }
 
     }
-
     public static int[] rand() {
         Random rand = new Random();
         int[] twoRandomNumbers = {
@@ -208,4 +207,14 @@ public class Player extends StackPane {
     public void setPlayerNum(int playerNum) {
         this.playerNum = playerNum;
     }
+
+    public int getMoney() {
+        return price;
+    }
+
+    public int getCurrentCellIndex() {
+        return price;
+    }
+
+
 }

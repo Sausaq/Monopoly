@@ -92,6 +92,7 @@ public class GameBoard extends GridPane {
         }
 
         moveButton.setOnAction(event -> playersMoving());
+        buyButton.setOnAction(event -> initializeBuy());
 
         Rectangle buttonsBackground = new Rectangle(450, 270, Color.valueOf("#A6A6A6"));
         buttonsBackground.setStroke(Color.BLACK);
@@ -147,6 +148,8 @@ public class GameBoard extends GridPane {
         }
     }
 
+
+
     public ArrayList<Player> getPlayers(){
         return players;
     }
@@ -156,6 +159,15 @@ public class GameBoard extends GridPane {
         for (Cell cell: cells){
             System.out.println(cell);
             add(cell, cell.getX(), cell.getY());
+        }
+    }
+
+    private void initializeBuy() {
+        Player currentPlayer = players.get(queue);
+        Cell currentCell = cells.get(currentPlayer.getCurrentCellIndex());
+        if (currentCell.canBuy(currentPlayer)) {
+            currentCell.buyCell(currentPlayer);
+        } else {
         }
     }
 }

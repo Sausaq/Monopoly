@@ -1,6 +1,7 @@
 package org.example.javaprojectmonopoly;
 
-import javafx.geometry.Insets;import javafx.geometry.Pos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -186,6 +187,24 @@ public class Cell extends StackPane {
     public void setSize(int x, int y) {
         border.setHeight(y);
         border.setWidth(x);
+    }
+
+
+    public boolean canBuy(Player player) {
+
+        if (isBought()) {
+            return false;
+        }
+
+        return player.getMoney() >= cost;
+    }
+
+    private boolean isBought() {
+        return false;
+    }
+
+    public void buyCell(Player currentPlayer) {
+
     }
 }
 
