@@ -4,6 +4,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -28,49 +30,49 @@ public class GameBoard extends GridPane {
     {
         cells.add(new Cell(1, 0, 0));
 
-        cells.add(new Cell(2, 1, 0, Flags.getFlagBritain(), 60000));
-        cells.add(new Cell(2, 2, 0));
-        cells.add(new Cell(2, 3, 0, Flags.getFlagBritain(), 60000));
-        cells.add(new Cell(2, 4, 0, Flags.getFlagBritain(), 80000));
+        cells.add(new Cell(2, 1, 0, Flags.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp2.png")))));
+        cells.add(new Cell(2, 2, 0, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp3.png")))));
+        cells.add(new Cell(2, 3, 0, Flags.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp4.png")))));
+        cells.add(new Cell(2, 4, 0, Flags.getFlagBritain(), 80000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp5.png")))));
         cells.add(new Cell(2, 5, 0));
-        cells.add(new Cell(2, 6, 0, Flags.getFlagKorea(), 150000));
+        cells.add(new Cell(2, 6, 0, Flags.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp7.png")))));
         cells.add(new Cell(2, 7, 0));
-        cells.add(new Cell(2, 8, 0, Flags.getFlagFrance(), 100000));
-        cells.add(new Cell(2, 9, 0, Flags.getFlagFrance(), 100000));
-        cells.add(new Cell(2, 10, 0, Flags.getFlagChina(), 200000));
-        cells.add(new Cell(2, 11, 0, Flags.getFlagFrance(), 100000));
+        cells.add(new Cell(2, 8, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp9.png")))));
+        cells.add(new Cell(2, 9, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp10.png")))));
+        cells.add(new Cell(2, 10, 0, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp11.png")))));
+        cells.add(new Cell(2, 11, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp12.png")))));
 
         cells.add(new Cell(1, 12, 0));
 
-        cells.add(new Cell(3, 12, 1, Flags.getFlagSweden(), 140000));
-        cells.add(new Cell(3, 12, 2, Flags.getFlagSweden(), 140000));
-        cells.add(new Cell(3, 12, 3, Flags.getFlagItaly(), 180000));
+        cells.add(new Cell(3, 12, 1, Flags.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp14.png")))));
+        cells.add(new Cell(3, 12, 2, Flags.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp15.png")))));
+        cells.add(new Cell(3, 12, 3, Flags.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp16.png")))));
         cells.add(new Cell(3, 12, 4));
-        cells.add(new Cell(3, 12, 5, Flags.getFlagItaly(), 180000));
-        cells.add(new Cell(3, 12, 6, Flags.getFlagItaly(), 200000));
+        cells.add(new Cell(3, 12, 5, Flags.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp18.png")))));
+        cells.add(new Cell(3, 12, 6, Flags.getFlagItaly(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp19.png")))));
 
         cells.add(new Cell(1, 12, 7));
 
-        cells.add(new Cell(2, 11, 7, Flags.getFlagJapan(), 220000));
-        cells.add(new Cell(2, 10, 7, Flags.getFlagChina(), 200000));
-        cells.add(new Cell(2, 9, 7, Flags.getFlagJapan(), 220000));
-        cells.add(new Cell(2, 8, 7, Flags.getFlagJapan(), 240000));
+        cells.add(new Cell(2, 11, 7, Flags.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp21.png")))));
+        cells.add(new Cell(2, 10, 7, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp22.png")))));
+        cells.add(new Cell(2, 9, 7, Flags.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp23.png")))));
+        cells.add(new Cell(2, 8, 7, Flags.getFlagJapan(), 240000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp24.png")))));
         cells.add(new Cell(2, 7, 7));
-        cells.add(new Cell(2, 6, 7, Flags.getFlagKorea(), 150000));
+        cells.add(new Cell(2, 6, 7, Flags.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp26.png")))));
         cells.add(new Cell(2, 5, 7));
-        cells.add(new Cell(2, 4, 7, Flags.getFlagGermany(), 260000));
-        cells.add(new Cell(2, 3, 7, Flags.getFlagGermany(), 260000));
-        cells.add(new Cell(2, 2, 7, Flags.getFlagChina(), 200000));
-        cells.add(new Cell(2, 1, 7, Flags.getFlagGermany(), 280000));
+        cells.add(new Cell(2, 4, 7, Flags.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp28.png")))));
+        cells.add(new Cell(2, 3, 7, Flags.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp29.png")))));
+        cells.add(new Cell(2, 2, 7, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp30.png")))));
+        cells.add(new Cell(2, 1, 7, Flags.getFlagGermany(), 280000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp31.png")))));
 
         cells.add(new Cell(1, 0, 7));
 
-        cells.add(new Cell(3, 0, 6, Flags.getFlagSwiss(), 320000));
-        cells.add(new Cell(3, 0, 5, Flags.getFlagSwiss(), 320000));
-        cells.add(new Cell(3, 0, 4, Flags.getFlagUSA(), 350000));
+        cells.add(new Cell(3, 0, 6, Flags.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp33.png")))));
+        cells.add(new Cell(3, 0, 5, Flags.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp34.png")))));
+        cells.add(new Cell(3, 0, 4, Flags.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp35.png")))));
         cells.add(new Cell(3, 0, 3));
-        cells.add(new Cell(3, 0, 2, Flags.getFlagUSA(), 350000));
-        cells.add(new Cell(3, 0, 1, Flags.getFlagUSA(), 400000));
+        cells.add(new Cell(3, 0, 2, Flags.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp37.png")))));
+        cells.add(new Cell(3, 0, 1, Flags.getFlagUSA(), 400000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp38.png")))));
     }
     private Label dieNumer = new Label();
 

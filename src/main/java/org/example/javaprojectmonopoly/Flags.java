@@ -43,12 +43,4 @@ public class Flags {
     public static ImageView getFlagSwiss(){
         return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/flags/swiss.png")));
     }
-
-
-
-
-
-
-
-
 }

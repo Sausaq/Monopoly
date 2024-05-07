@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 
 public class Cell extends StackPane {
     private Rectangle border = new Rectangle();
@@ -114,21 +115,63 @@ public class Cell extends StackPane {
 
         flag.setFitWidth(45);
         flag.setFitHeight(45);
-        getChildren().addAll(flag, company);
+        company.setFitHeight(50);
+        company.setFitWidth(60);
+        Label label = new Label(String.valueOf(cost) + " $");
+        label.setFont(Font.font(14));
 
-        switch (type){
+        switch (type) {
             case 1:
                 setSize(150, 150);
                 break;
             case 2:
+                if (y == 0) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.getChildren().addAll(flag, company, label);
+                    companyAndCost.setAlignment(Pos.TOP_CENTER);
+                    setMargin(companyAndCost, new Insets(10, 0, 0, 0));
+                } else if (y == 7) {
+                    VBox companyAndCost = new VBox();
+                    getChildren().add(companyAndCost);
+                    companyAndCost.setAlignment(Pos.BOTTOM_CENTER);
+                    companyAndCost.getChildren().addAll(label, company, flag);
+                    setMargin(companyAndCost, new Insets(0, 0, 10, 0));
+                }
                 setSize(90, 150);
                 break;
             case 3:
+                if (x == 0) {
+                    HBox flagAndCompany = new HBox();
+                    VBox companyAndCost = new VBox();
+
+                    flagAndCompany.getChildren().addAll(flag, companyAndCost);
+                    flagAndCompany.setAlignment(Pos.CENTER_LEFT);
+                    companyAndCost.getChildren().addAll(company, label);
+                    companyAndCost.setAlignment(Pos.CENTER_LEFT);
+
+
+                    getChildren().add(flagAndCompany);
+                    setMargin(flagAndCompany, new Insets(0, 0, 0, 10));
+                    HBox.setMargin(companyAndCost, new Insets(0, 0, 0, 10));
+                } else if (x == 12) {
+                    HBox flagAndCompany = new HBox();
+                    VBox companyAndCost = new VBox();
+
+                    flagAndCompany.getChildren().addAll(companyAndCost, flag);
+                    flagAndCompany.setAlignment(Pos.CENTER_RIGHT);
+                    companyAndCost.getChildren().addAll(company, label);
+                    companyAndCost.setAlignment(Pos.CENTER_RIGHT);
+
+                    getChildren().add(flagAndCompany);
+                    setMargin(flagAndCompany, new Insets(0, 10, 0, 0));
+                    HBox.setMargin(companyAndCost, new Insets(0, 10, 0, 0));
+
+                }
                 setSize(150, 90);
                 break;
             default:
                 System.out.println("NIFIGA");
-
         }
     }
 
