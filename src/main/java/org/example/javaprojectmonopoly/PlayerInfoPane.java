@@ -13,11 +13,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
 public class PlayerInfoPane extends HBox {
+    Label price;
+    Player player;
 
     public PlayerInfoPane() {
     }
 
     public PlayerInfoPane(Player player) {
+        this.player = player;
         Font beaumaris = Font.font(25);
 
         Rectangle rec = new Rectangle(460, 200);
@@ -64,7 +67,7 @@ public class PlayerInfoPane extends HBox {
         priceBackground.setStrokeWidth(2);
         priceBackground.setStroke(Color.BLACK);
 
-        Label price = new Label("$ " + String.valueOf(player.getPrice()));
+        price = new Label("$ " + String.valueOf(player.getPrice()));
         price.setFont(Font.font(20));
 
         StackPane priceStackPane = new StackPane(priceBackground, price);
@@ -81,5 +84,13 @@ public class PlayerInfoPane extends HBox {
         stackPane.setMaxSize(900, 200);
 
         getChildren().add(stackPane);
+    }
+
+    public void updatePrice(){
+        price.setText("$ " + String.valueOf(player.getPrice()));
+    }
+
+    public Label getPrice() {
+        return price;
     }
 }

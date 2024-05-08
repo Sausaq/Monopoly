@@ -14,8 +14,10 @@ import javafx.scene.text.Font;
 public class Cell extends StackPane {
     private Rectangle border = new Rectangle();
     private int cost;
+    private Label label = new Label(String.valueOf(cost) + " $");;
     private int x;
     private int y;
+    private int incomePrice;
 
 
     public Cell(int type, int x, int y){
@@ -59,7 +61,7 @@ public class Cell extends StackPane {
 
         flag.setFitWidth(40);
         flag.setFitHeight(40);
-        Label label = new Label(String.valueOf(cost) + " $");
+
 
         switch (type){
             case 1:
@@ -77,6 +79,7 @@ public class Cell extends StackPane {
                     getChildren().add(companyAndCost);
                     companyAndCost.setAlignment(Pos.BOTTOM_CENTER);
                     companyAndCost.getChildren().addAll(label, flag);
+                    VBox.setMargin(label, new Insets(0,0,25,0));
                     setMargin(companyAndCost, new Insets(0, 0, 10, 0));
                 }
                 setSize(90, 150);
@@ -103,10 +106,11 @@ public class Cell extends StackPane {
         }
     }
 
-    public Cell(int type, int x, int y, ImageView flag, int cost, ImageView company){
+    public Cell(int type, int x, int y, ImageView flag, int cost, ImageView company, int incomePrice){
         this.x = x;
         this.y = y;
         this.cost = cost;
+        this.incomePrice = incomePrice;
         border.setFill(Color.valueOf("#FFBD59"));
         border.setStroke(Color.BLACK);
         border.setArcWidth(10);
@@ -118,7 +122,7 @@ public class Cell extends StackPane {
         flag.setFitHeight(45);
         company.setFitHeight(50);
         company.setFitWidth(60);
-        Label label = new Label(String.valueOf(cost) + " $");
+        label.setText(String.valueOf(cost) + " $");
         label.setFont(Font.font(14));
 
         switch (type) {
@@ -189,22 +193,22 @@ public class Cell extends StackPane {
         border.setWidth(x);
     }
 
-
-    public boolean canBuy(Player player) {
-
-        if (isBought()) {
-            return false;
-        }
-
-        return player.getMoney() >= cost;
+    public Rectangle getBack(){
+        return border;
     }
 
-    private boolean isBought() {
-        return false;
+    public int getCost(){
+        return cost;
     }
 
-    public void buyCell(Player currentPlayer) {
-
+    public Label getLabel() {
+        return label;
     }
+
+
+    public int getIncomePrice() {
+        return incomePrice;
+    }
+
 }
 
