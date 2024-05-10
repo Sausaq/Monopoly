@@ -21,7 +21,6 @@ public class Player extends StackPane {
     private int secondIndex;
 
     private int price = 1500000;
-    private ArrayList<Cell> companiesList = new ArrayList<>();
 
     private int id;
     private String name;
@@ -48,17 +47,10 @@ public class Player extends StackPane {
         circle = new Circle(13, Color.valueOf(colorCode));
         circle.setStrokeWidth(1);
         circle.setStroke(Color.BLACK);
-        companiesList = new ArrayList<>();
-    }
-
-    public void addCompany(Cell company){
-        companiesList.add(company);
-        company.getBack().setFill(Color.valueOf(this.getColorCode()));
-        price -= company.getCost();
+        getChildren().add(circle);
     }
 
     public void addPlayerToBoard() {
-        getChildren().add(circle);
         switch (playerNum) {
             case 1:
                 setAlignment(circle, Pos.TOP_LEFT);
@@ -89,11 +81,6 @@ public class Player extends StackPane {
             int firstIndex = index;
             secondIndex = (index + step) % 36;
             index = (index + step) % 36;
-
-//            Label label = (Label) board.getChildren().get(38);
-//            Label label2 = (Label) board.getChildren().get(39);
-//            label.setText(String.valueOf(firstRandom));
-//            label2.setText(String.valueOf(secondRandom));
 
             Cell nextCell = cells.get(secondIndex);
 
@@ -178,14 +165,6 @@ public class Player extends StackPane {
 
             pause.playFromStart();
         }
-
-    }
-    public static int[] rand() {
-        Random rand = new Random();
-        int[] twoRandomNumbers = {
-                rand.nextInt(6) + 1, rand.nextInt(6) + 1
-        };
-        return twoRandomNumbers;
     }
 
     @Override
@@ -213,9 +192,11 @@ public class Player extends StackPane {
         return price;
     }
 
+    public void setMoney(int money) {
+        price = money;
+    }
+
     public int getIndex() {
         return secondIndex;
     }
-
-
 }

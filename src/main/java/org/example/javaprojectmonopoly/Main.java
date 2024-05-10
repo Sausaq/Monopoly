@@ -23,25 +23,25 @@ public class Main extends Application {
         ChangePlayerMenu changePlayerMenu = new ChangePlayerMenu();
         Scene changePlayerScene = new Scene(changePlayerMenu, 1500, 900);
 
-        stage.setScene(menuScene);
-        stage.setHeight(900);
-        stage.setWidth(1500);
-        stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Esc"));
-        stage.setFullScreenExitHint("");
-        stage.setFullScreen(true);
-        stage.setTitle("Monopoly Board");
-        stage.show();
-        //
+        DeletePlayerMenu deletePlayerMenu = new DeletePlayerMenu();
+        Scene deletePlayerScene = new Scene(deletePlayerMenu, 1500, 900);
+
         menu.getNewPlayerButton().setOnAction(e -> stage.setScene(newPlayerScene));
         menu.getChangePlayerButton().setOnAction(e -> stage.setScene(changePlayerScene));
+        menu.getDeletePlayerButton().setOnAction(e -> stage.setScene(deletePlayerScene));
         newPlayerMenu.getCancelButton().setOnAction(b -> stage.setScene(menuScene));
 //        newPlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
 
         changePlayerMenu.getCancelButton().setOnAction(event -> {
-//            menu.playersField(DBManager.getAllPlayers());
+            menu.playersField(DBManager.getAllPlayers());
             stage.setScene(menuScene);
         });
 //        changePlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
+
+        deletePlayerMenu.getCancelButton().setOnAction(event -> {
+            menu.playersField(DBManager.getAllPlayers());
+            stage.setScene(menuScene);
+        });
 
         menu.getStartButton().setOnAction(event -> {
             Game game = new Game(menu.getAddedPlayers());
@@ -49,6 +49,14 @@ public class Main extends Application {
             stage.setScene(gameScene);
         });
 
+        stage.setScene(deletePlayerScene);
+        stage.setHeight(900);
+        stage.setWidth(1500);
+        stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Esc"));
+        stage.setFullScreenExitHint("");
+        stage.setFullScreen(true);
+        stage.setTitle("Monopoly Board");
+        stage.show();
     }
 
     public static void main(String[] args) {

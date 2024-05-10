@@ -1,18 +1,21 @@
 package org.example.javaprojectmonopoly;
 
+import javafx.css.Styleable;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-public class PlayerInfoPane extends HBox {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class PlayerInfoPane extends HBox implements Initializable, Styleable {
     Label price;
     Player player;
 
@@ -92,5 +95,16 @@ public class PlayerInfoPane extends HBox {
 
     public Label getPrice() {
         return price;
+    }
+
+
+    @Override
+    public Node getStyleableNode() {
+        return super.getStyleableNode();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

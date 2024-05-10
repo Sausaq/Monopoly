@@ -18,7 +18,8 @@ public class Game extends StackPane {
         background = new ImageView(new Image(getClass().getResourceAsStream( "/org/example/javaprojectmonopoly/images/background.png")));
         boardAndUsers = new HBox();
 
-        playersList = new UserList(players);
+        playersList = new UserList();
+        playersList.createUserList(players);
         board = new GameBoard(players, playersList);
         HBox.setMargin(board, new Insets(0, 10, 0, 75));
         boardAndUsers.getChildren().addAll(board, playersList);

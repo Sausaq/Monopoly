@@ -76,6 +76,22 @@ public class DBManager {
         }
     }
 
+    public static void deletePlayer(String name){
+        try {
+            PreparedStatement statement = connection.prepareStatement(""  +
+                    "DELETE FROM public.players " +
+                    "WHERE name == ?");
+            statement.setString(1, name);
+
+            statement.executeUpdate();
+            statement.close();
+
+        }catch (Exception e){
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

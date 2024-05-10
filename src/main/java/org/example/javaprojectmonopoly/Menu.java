@@ -22,6 +22,7 @@ public class Menu extends StackPane {
     private Button newPlayerButton = new Button("Новый игрок");
     private Button startButton = new Button("Начать игру");
     private Button changePlayerButton = new Button("Изменить");
+    private Button deletePlayerButton = new Button("Удалить");
 
 
 
@@ -61,7 +62,6 @@ public class Menu extends StackPane {
         changePlayerButton.setOnMouseExited(e -> changePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
 
 
-        Button deletePlayerButton = new Button("Удалить");
         deletePlayerButton.setFont(peaceSans);
         deletePlayerButton.setPrefSize(640, 105);
         deletePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
@@ -315,6 +315,10 @@ public class Menu extends StackPane {
 
     public Button getChangePlayerButton(){
         return changePlayerButton;
+    }
+
+    public Button getDeletePlayerButton(){
+        return deletePlayerButton;
     }
 
     public ArrayList<Player> getAddedPlayers() {

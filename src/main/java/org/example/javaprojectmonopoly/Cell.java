@@ -14,15 +14,17 @@ import javafx.scene.text.Font;
 public class Cell extends StackPane {
     private Rectangle border = new Rectangle();
     private int cost;
-    private Label label = new Label(String.valueOf(cost) + " $");;
+    private Label label = new Label(String.valueOf(cost) + " $");
+    private Player author;
     private int x;
     private int y;
     private int incomePrice;
+    private boolean isFree = true;
 
-
-    public Cell(int type, int x, int y){
+    public Cell(int type, int x, int y, boolean isFree){
         this.x = x;
         this.y = y;
+        this.isFree = isFree;
         border.setFill(Color.valueOf("#FFBD59"));
         border.setStroke(Color.BLACK);
         border.setArcWidth(10);
@@ -46,7 +48,6 @@ public class Cell extends StackPane {
 
         getChildren().add(border);
     }
-
 
     public Cell(int type, int x, int y, ImageView flag, int cost){
         this.x = x;
@@ -180,6 +181,14 @@ public class Cell extends StackPane {
         }
     }
 
+    public boolean isFree() {
+        return isFree;
+    }
+
+    public void setFree(boolean free) {
+        isFree = free;
+    }
+
     public int getX(){
         return x;
     }
@@ -208,6 +217,14 @@ public class Cell extends StackPane {
 
     public int getIncomePrice() {
         return incomePrice;
+    }
+
+    public void setAuthor(Player player){
+        author = player;
+    }
+
+    public Player getAuthor(){
+        return author;
     }
 
 }
