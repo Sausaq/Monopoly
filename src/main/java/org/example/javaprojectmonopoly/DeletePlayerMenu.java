@@ -64,35 +64,6 @@ public class DeletePlayerMenu extends StackPane {
         HBox.setMargin(nameText, new Insets(10,0,0,20));
         HBox nameAndText = new HBox(name, nameText);
 
-        Rectangle colorTextBackground = new Rectangle(200, 110);
-        colorTextBackground.setFill(Color.valueOf("#FF3131"));
-        colorTextBackground.setArcWidth(20);
-        colorTextBackground.setArcHeight(20);
-        Label colorLabel = new Label("Цвет");
-        colorLabel.setFont(Font.font(20));
-        StackPane colorText = new StackPane(colorTextBackground, colorLabel);
-
-        Rectangle colorChooseBack = new Rectangle(720, 110);
-        colorChooseBack.setFill(Color.valueOf("#545454"));
-        colorChooseBack.setArcWidth(20);
-        colorChooseBack.setArcHeight(20);
-        colorChooseBack.setStroke(Color.BLACK);
-        colorChooseBack.setStrokeWidth(2);
-
-        ColorPicker colorChoose = new ColorPicker();
-        colorChoose.setMaxSize(700, 90);
-        colorChoose.setStyle("-fx-background-color: #545454;");
-
-
-        StackPane colorChooseField = new StackPane(colorChooseBack, colorChoose);
-
-
-        HBox.setMargin(name, new Insets(10,0,0,0));
-        HBox.setMargin(nameText, new Insets(10,0,0,20));
-        HBox.setMargin(colorText, new Insets(10,0,0,0));
-        HBox.setMargin(colorChooseField, new Insets(10,0,0,20));
-        HBox color = new HBox(colorText, colorChooseField);
-
         HBox buttons = new HBox();
         deleteButton.setFont(Font.font(20));
         deleteButton.setPrefSize(400, 170);
@@ -110,7 +81,7 @@ public class DeletePlayerMenu extends StackPane {
 
         buttons.getChildren().addAll(deleteButton, cancelButton);
 
-        fields.getChildren().addAll(monopoly, nameAndText, color, buttons);
+        fields.getChildren().addAll(monopoly, nameAndText, buttons);
 
         deleteButton.setOnAction(e -> {
             DBManager.deletePlayer(nameTextField.getText());

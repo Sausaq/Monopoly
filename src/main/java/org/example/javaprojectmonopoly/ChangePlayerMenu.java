@@ -45,7 +45,7 @@ public class ChangePlayerMenu extends StackPane {
         playerBackground.setArcHeight(20);
         Label playerLabel = new Label("Игрок");
         playerLabel.setFont(Font.font(20));
-        StackPane player = new StackPane(playerBackground, playerLabel);
+        StackPane playerField = new StackPane(playerBackground, playerLabel);
 
         Rectangle playerChooseBack = new Rectangle(720, 110);
         playerChooseBack.setFill(Color.valueOf("#545454"));
@@ -62,7 +62,7 @@ public class ChangePlayerMenu extends StackPane {
         HBox.setMargin(playerChoose, new Insets(10,0,0,20));
 
 
-        HBox playerAndChoose = new HBox(player, playerChoose);
+        HBox playerAndChoose = new HBox(playerField, playerChoose);
 
 
         Rectangle nameBackground = new Rectangle(200, 110);
@@ -143,7 +143,9 @@ public class ChangePlayerMenu extends StackPane {
                     (int) (selectedColor.getRed() * 255),
                     (int) (selectedColor.getGreen() * 255),
                     (int) (selectedColor.getBlue() * 255));
-            DBManager.updatePlayer(playerTextField.getText() , nameTextField.getText(), hexColor);
+            Player player = new Player(nameTextField.getText(), hexColor);
+            Menu.updatePlayersList(player);
+            DBManager.updatePlayer(playerTextField.getText(), player);
             System.out.println(nameTextField.getText() + hexColor);
         });
 

@@ -44,11 +44,20 @@ public class Flags {
         return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/flags/swiss.png")));
     }
 
+    public static ImageView getStart(){
+        return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/otherCells/start.png")));
+    }
 
+    public static ImageView getCustoms(){
+        return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/otherCells/customs.png")));
+    }
 
+    public static ImageView getPrison(){
+        return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/otherCells/prison.png")));
+    }
 
-
-
-
+    public static ImageView getChill(){
+        return new ImageView(new Image( Flags.class.getResourceAsStream("/org/example/javaprojectmonopoly/images/otherCells/chill.png")));
+    }
 
 }

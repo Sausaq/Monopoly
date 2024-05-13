@@ -24,14 +24,14 @@ public class DBManager {
     }
 
 
-    public static void updatePlayer(String oldName, String newName, String colorCode) {
+    public static void updatePlayer(String oldName, Player player) {
         try {
             PreparedStatement statement = connection.prepareStatement("" +
                     "UPDATE public.players \n" +
                     "SET name = ?, color_code = ? \n" +
                     "WHERE name = ?");
-            statement.setString(1, newName);
-            statement.setString(2, colorCode);
+            statement.setString(1, player.getName());
+            statement.setString(2, player.getColorCode());
             statement.setString(3, oldName);
 
             statement.executeUpdate();
@@ -59,13 +59,13 @@ public class DBManager {
         return players;
     }
 
-    public static void insertPlayer(String name, String colorCode){
+    public static void insertPlayer(Player player){
         try {
             PreparedStatement statement = connection.prepareStatement(""  +
                     "INSERT INTO public.players(name, games, wins, color_code) " +
                     "VALUES(?, 0, 0, ?)");
-            statement.setString(1, name);
-            statement.setString(2, colorCode);
+            statement.setString(1, player.getName());
+            statement.setString(2, player.getColorCode());
 
             statement.executeUpdate();
             statement.close();
@@ -80,7 +80,7 @@ public class DBManager {
         try {
             PreparedStatement statement = connection.prepareStatement(""  +
                     "DELETE FROM public.players " +
-                    "WHERE name == ?");
+                    "WHERE name = ?");
             statement.setString(1, name);
 
             statement.executeUpdate();

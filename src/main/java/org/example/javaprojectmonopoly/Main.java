@@ -13,8 +13,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         DBManager.connect();
 
-        Menu menu = new Menu();
-        menu.playersField(DBManager.getAllPlayers());
+        Menu menu = new Menu(DBManager.getAllPlayers());
         Scene menuScene = new Scene(menu);
 
         NewPlayerMenu newPlayerMenu = new NewPlayerMenu();
@@ -29,17 +28,16 @@ public class Main extends Application {
         menu.getNewPlayerButton().setOnAction(e -> stage.setScene(newPlayerScene));
         menu.getChangePlayerButton().setOnAction(e -> stage.setScene(changePlayerScene));
         menu.getDeletePlayerButton().setOnAction(e -> stage.setScene(deletePlayerScene));
-        newPlayerMenu.getCancelButton().setOnAction(b -> stage.setScene(menuScene));
+        newPlayerMenu.getCancelButton().setOnAction(e -> stage.setScene(menuScene));
 //        newPlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
 
         changePlayerMenu.getCancelButton().setOnAction(event -> {
-            menu.playersField(DBManager.getAllPlayers());
+//            menu.playersField(DBManager.getAllPlayers());
             stage.setScene(menuScene);
         });
 //        changePlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
 
         deletePlayerMenu.getCancelButton().setOnAction(event -> {
-            menu.playersField(DBManager.getAllPlayers());
             stage.setScene(menuScene);
         });
 
@@ -49,7 +47,7 @@ public class Main extends Application {
             stage.setScene(gameScene);
         });
 
-        stage.setScene(deletePlayerScene);
+        stage.setScene(menuScene);
         stage.setHeight(900);
         stage.setWidth(1500);
         stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("Esc"));

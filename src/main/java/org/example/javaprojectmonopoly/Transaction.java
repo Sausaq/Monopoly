@@ -2,14 +2,14 @@ package org.example.javaprojectmonopoly;
 
 public class Transaction {
     Player player;
-    Cell company;
+    Company company;
 
 
     public Transaction (){
     }
 
 
-    public Transaction(Player player, Cell company) {
+    public Transaction(Player player, Company company) {
         this.player = player;
         this.company = company;
     }
@@ -27,11 +27,11 @@ public class Transaction {
         this.player = player;
     }
 
-    public Cell getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(Cell company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 }

@@ -2,17 +2,15 @@ package org.example.javaprojectmonopoly;
 
 import javafx.animation.Animation;
 import javafx.animation.PauseTransition;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.animation.TranslateTransition;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Player extends StackPane {
     private PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -38,6 +36,17 @@ public class Player extends StackPane {
         return price;
     }
 
+    public Player(String name, String colorCode) {
+        this.name = name;
+        this.colorCode = colorCode;
+        wins = 0;
+        games = 0;
+        circle = new Circle(13, Color.valueOf(colorCode));
+        circle.setStrokeWidth(1);
+        circle.setStroke(Color.BLACK);
+        getChildren().add(circle);
+    }
+
     public Player(int i, String name, int wins, int games, String colorCode) {
         this.id = i;
         this.name = name;
@@ -54,24 +63,24 @@ public class Player extends StackPane {
         switch (playerNum) {
             case 1:
                 setAlignment(circle, Pos.TOP_LEFT);
-                setMargin(circle, new javafx.geometry.Insets(25, 0, 0, 15));
+                setMargin(circle, new Insets(25, 0, 0, 15));
                 break;
             case 2:
                 setAlignment(circle, Pos.TOP_RIGHT);
-                setMargin(circle, new javafx.geometry.Insets(25, 80, 0, 0));
+                setMargin(circle, new Insets(25, 80, 0, 0));
                 break;
             case 3:
                 setAlignment(circle, Pos.BOTTOM_LEFT);
-                setMargin(circle, new javafx.geometry.Insets(0, 0, 72, 15));
+                setMargin(circle, new Insets(0, 0, 72, 15));
                 break;
             case 4:
                 setAlignment(circle, Pos.BOTTOM_RIGHT);
-                setMargin(circle, new javafx.geometry.Insets(0, 80, 72, 0));
+                setMargin(circle, new Insets(0, 80, 72, 0));
                 break;
         }
     }
 
-    public void moving(ArrayList<Cell> cells, int firstRandom, int secondRandom) {
+    public void moving(ArrayList<Company> companies, int firstRandom, int secondRandom) {
         if (!pause.getStatus().equals(Animation.Status.RUNNING)) {
             TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
             TranslateTransition transition2 = new TranslateTransition(Duration.seconds(1), this);
@@ -82,10 +91,10 @@ public class Player extends StackPane {
             secondIndex = (index + step) % 36;
             index = (index + step) % 36;
 
-            Cell nextCell = cells.get(secondIndex);
+            Company nextCompany = companies.get(secondIndex);
 
-            double endLayoutX = nextCell.getLayoutX();
-            double endLayoutY = nextCell.getLayoutY();
+            double endLayoutX = nextCompany.getLayoutX();
+            double endLayoutY = nextCompany.getLayoutY();
 
             System.out.println(firstIndex + " " + secondIndex);
             System.out.println(getTranslateX() + " " + getTranslateY());
@@ -94,7 +103,7 @@ public class Player extends StackPane {
 
             // Moving
             if (firstIndex <= 11 && secondIndex >= 13 && secondIndex <= 19) {
-                transition.setToX(cells.get(12).getLayoutX());
+                transition.setToX(companies.get(12).getLayoutX());
 
                 transition.play();
                 transition.setOnFinished(event -> {
@@ -102,10 +111,10 @@ public class Player extends StackPane {
                     transition2.play();
                 });
             } else if (firstIndex <= 11 && secondIndex >= 20) {
-                transition.setToX(cells.get(12).getLayoutX());
+                transition.setToX(companies.get(12).getLayoutX());
                 transition.play();
                 transition.setOnFinished(event -> {
-                    transition2.setToY(cells.get(19).getLayoutY());
+                    transition2.setToY(companies.get(19).getLayoutY());
                     transition2.play();
                     transition2.setOnFinished(event1 -> {
                         transition3.setToX(endLayoutX);
@@ -113,7 +122,7 @@ public class Player extends StackPane {
                     });
                 });
             } else if (firstIndex <= 18 && secondIndex >= 20) {
-                transition.setToY(cells.get(19).getLayoutY());
+                transition.setToY(companies.get(19).getLayoutY());
 
                 transition.play();
                 transition.setOnFinished(event -> {
@@ -123,7 +132,7 @@ public class Player extends StackPane {
                 });
 
             } else if (firstIndex <= 30 && secondIndex >= 32 && secondIndex <= 37) {
-                transition.setToX(cells.get(31).getLayoutX());
+                transition.setToX(companies.get(31).getLayoutX());
 
                 transition.play();
                 transition.setOnFinished(event -> {
@@ -132,10 +141,10 @@ public class Player extends StackPane {
                     transition2.play();
                 });
             } else if (firstIndex <= 30 && firstIndex >= 20 && secondIndex <= 11) {
-                transition.setToX(cells.get(31).getLayoutX());
+                transition.setToX(companies.get(31).getLayoutX());
                 transition.play();
                 transition.setOnFinished(event -> {
-                    transition2.setToY(cells.get(0).getLayoutY());
+                    transition2.setToY(companies.get(0).getLayoutY());
                     transition2.play();
                     transition2.setOnFinished(event1 -> {
                         transition3.setToX(endLayoutX);
@@ -145,7 +154,7 @@ public class Player extends StackPane {
                 });
 
             } else if (firstIndex <= 37 && firstIndex >= 31 && secondIndex <= 11) {
-                transition.setToY(cells.getFirst().getLayoutY());
+                transition.setToY(companies.getFirst().getLayoutY());
 
                 transition.play();
                 transition.setOnFinished(event -> {

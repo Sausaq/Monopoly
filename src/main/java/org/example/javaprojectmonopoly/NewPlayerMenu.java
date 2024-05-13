@@ -115,7 +115,9 @@ public class NewPlayerMenu extends StackPane {
                     (int) (selectedColor.getRed() * 255),
                     (int) (selectedColor.getGreen() * 255),
                     (int) (selectedColor.getBlue() * 255));
-            DBManager.insertPlayer(nameTextField.getText(), hexColor);
+            Player player = new Player(nameTextField.getText(), hexColor);
+            Menu.updatePlayersList(player);
+            DBManager.insertPlayer(player);
             System.out.println(nameTextField.getText() + hexColor);
         });
 

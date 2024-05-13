@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
-public class Cell extends StackPane {
+public class Company extends StackPane {
     private Rectangle border = new Rectangle();
     private int cost;
     private Label label = new Label(String.valueOf(cost) + " $");
@@ -21,7 +21,7 @@ public class Cell extends StackPane {
     private int incomePrice;
     private boolean isFree = true;
 
-    public Cell(int type, int x, int y, boolean isFree){
+    public Company(int type, int x, int y,boolean isFree){
         this.x = x;
         this.y = y;
         this.isFree = isFree;
@@ -49,65 +49,37 @@ public class Cell extends StackPane {
         getChildren().add(border);
     }
 
-    public Cell(int type, int x, int y, ImageView flag, int cost){
+    public Company(int type, int x, int y, ImageView image, boolean isFree){
         this.x = x;
         this.y = y;
-        this.cost = cost;
+        this.isFree = isFree;
         border.setFill(Color.valueOf("#FFBD59"));
         border.setStroke(Color.BLACK);
         border.setArcWidth(10);
         border.setArcHeight(10);
         setMargin(border, new Insets(1));
-        getChildren().add(border);
-
-        flag.setFitWidth(40);
-        flag.setFitHeight(40);
-
+        image.setFitWidth(80);
+        image.setFitHeight(80);
 
         switch (type){
             case 1:
                 setSize(150, 150);
                 break;
             case 2:
-                if (y == 0) {
-                    VBox companyAndCost = new VBox();
-                    getChildren().add(companyAndCost);
-                    companyAndCost.getChildren().addAll(flag, label);
-                    companyAndCost.setAlignment(Pos.TOP_CENTER);
-                    setMargin(companyAndCost, new Insets(10, 0, 0, 0));
-                } else if (y == 7) {
-                    VBox companyAndCost = new VBox();
-                    getChildren().add(companyAndCost);
-                    companyAndCost.setAlignment(Pos.BOTTOM_CENTER);
-                    companyAndCost.getChildren().addAll(label, flag);
-                    VBox.setMargin(label, new Insets(0,0,25,0));
-                    setMargin(companyAndCost, new Insets(0, 0, 10, 0));
-                }
                 setSize(90, 150);
                 break;
             case 3:
-                if (x == 0) {
-                    VBox companyAndCost = new VBox();
-                    getChildren().add(companyAndCost);
-                    companyAndCost.getChildren().addAll(flag, label);
-                    companyAndCost.setAlignment(Pos.CENTER_LEFT);
-                    setMargin(companyAndCost, new Insets(0, 0, 0, 10));
-                } else if (x == 12) {
-                    VBox companyAndCost = new VBox();
-                    getChildren().add(companyAndCost);
-                    companyAndCost.setAlignment(Pos.CENTER_RIGHT);
-                    companyAndCost.getChildren().addAll(flag, label);
-                    setMargin(companyAndCost, new Insets(0, 10, 0, 0));
-                }
                 setSize(150, 90);
                 break;
             default:
                 System.out.println("NIFIGA");
 
         }
+
+        getChildren().addAll(border, image);
     }
 
-    public Cell(int type, int x, int y, ImageView flag, int cost, ImageView company, int incomePrice){
+    public Company(int type, int x, int y, ImageView flag, int cost, ImageView company, int incomePrice){
         this.x = x;
         this.y = y;
         this.cost = cost;
