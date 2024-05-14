@@ -148,7 +148,7 @@ public class Player extends StackPane {
                 });
 
             } else if (firstIndex <= 37 && firstIndex >= 31 && secondIndex <= 11) {
-                transition.setToY(companies.getFirst().getLayoutY());
+                transition.setToY(companies.get(0).getLayoutY());
 
                 transition.play();
                 transition.setOnFinished(event -> {

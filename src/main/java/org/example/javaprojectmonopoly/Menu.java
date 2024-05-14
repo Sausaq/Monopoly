@@ -385,4 +385,7 @@ public class Menu extends StackPane {
     public Button getStartButton() {
         return startButton;
     }
+
+    public void playersField(java.util.ArrayList<org.example.javaprojectmonopoly.Player> allPlayers) {
+    }
 }

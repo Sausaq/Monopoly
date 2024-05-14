@@ -1,5 +1,6 @@
 package org.example.javaprojectmonopoly;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 public class Timer implements Runnable {
@@ -8,8 +9,9 @@ public class Timer implements Runnable {
     private int remainingSeconds;
     private Label label;
     private boolean running;
+    private Thread timerThread;
 
-    public Timer() {
+    public Timer(Label label) {
         this.remainingSeconds = 60;
         this.label = label;
         this.running = false;
@@ -20,7 +22,7 @@ public class Timer implements Runnable {
         try {
             running = true;
             while (running) {
-                Thread.sleep(1000); // Приостанавливаем поток на секунду
+                Thread.sleep(1000);
                 remainingSeconds--;
                 if (remainingSeconds < 0) {
                     remainingMinutes--;
@@ -29,38 +31,38 @@ public class Timer implements Runnable {
                 if (remainingMinutes < 0) {
                     break;
                 }
+                updateLabel();
             }
-
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
-
-    public void restartTimer() {
-        this.remainingSeconds = 60;
-        running = false;
-//        try {
-//            join(); // Ждем завершения потока
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-    }
-
     public void startTimer() {
-        this.remainingSeconds = 60;
-        running = true;
+        if (timerThread == null || !timerThread.isAlive()) {
+            timerThread = new Thread(this);
+            timerThread.start();
+        }
     }
-
-
-
-
+    public void stopTimer() {
+        running = false;
+        timerThread.interrupt();
+    }
+    public void restartTimer() {
+        this.remainingMinutes = 0;
+        this.remainingSeconds = 60;
+        stopTimer();
+        startTimer();
+    }
+    private void updateLabel() {
+        Platform.runLater(() -> {
+            if (label != null) {
+                label.setText(String.format("%02d:%02d", remainingMinutes, remainingSeconds));
+            }
+        });
+    }
     public int getRemainingMinutes() {
         return remainingMinutes;
     }
-
     public int getRemainingSeconds() {
         return remainingSeconds;
     }

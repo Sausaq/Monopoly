@@ -172,7 +172,7 @@ public class GameBoard extends GridPane {
         Company nextCompany = companies.get(currentPlayer.getIndex() + firstRandom + secondRandom);
 
         if (queue == 0) {
-            players.getFirst().moving(companies, firstRandom, secondRandom);
+            players.get(0).moving(companies, firstRandom, secondRandom);
         } else if (queue == 1) {
             players.get(1).moving(companies, firstRandom, secondRandom);
         } else if (queue == 2) {

@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 
 public class Main extends Application {
@@ -29,20 +30,25 @@ public class Main extends Application {
         menu.getChangePlayerButton().setOnAction(e -> stage.setScene(changePlayerScene));
         menu.getDeletePlayerButton().setOnAction(e -> stage.setScene(deletePlayerScene));
         newPlayerMenu.getCancelButton().setOnAction(e -> stage.setScene(menuScene));
-//        newPlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
+        newPlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
 
         changePlayerMenu.getCancelButton().setOnAction(event -> {
-//            menu.playersField(DBManager.getAllPlayers());
+            menu.playersField(DBManager.getAllPlayers());
             stage.setScene(menuScene);
         });
-//        changePlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
+        changePlayerMenu.getCreate().setOnAction(c -> stage.setScene(menuScene));
 
         deletePlayerMenu.getCancelButton().setOnAction(event -> {
             stage.setScene(menuScene);
         });
 
         menu.getStartButton().setOnAction(event -> {
-            Game game = new Game(menu.getAddedPlayers());
+            Game game = null;
+            try {
+                game = new Game(menu.getAddedPlayers());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             Scene gameScene = new Scene(game, 1500, 900);
             stage.setScene(gameScene);
         });
