@@ -12,9 +12,8 @@ import javafx.scene.text.Font;
 
 
 public class NewPlayerMenu extends StackPane {
-    private Button createButton = new Button("Новый игрок");
-    private Button cancelButton = new Button("Отмена");
-
+    private MyButton createButton = new MyButton("Новый игрок",400, 170);
+    private MyButton cancelButton = new MyButton("Назад",400, 170);
 
 
     public NewPlayerMenu() {
@@ -91,21 +90,10 @@ public class NewPlayerMenu extends StackPane {
         HBox.setMargin(colorChooseField, new Insets(10,0,0,20));
         HBox color = new HBox(colorText, colorChooseField);
 
-        HBox buttons = new HBox();
-        createButton.setPrefSize(400, 170);
-        createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;  -fx-font-size: 20;");
-        createButton.setOnMouseEntered(e -> createButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20;")); // Красный при наведении
-        createButton.setOnMouseExited(e -> createButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20;")); // Возвращаем белый цвет
+        HBox buttons = new HBox(createButton, cancelButton);
         HBox.setMargin(createButton, new Insets(20,0,0,0));
-
-
-        cancelButton.setPrefSize(400, 170);
-        cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20");
-        cancelButton.setOnMouseEntered(e -> cancelButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20")); // Красный при наведении
-        cancelButton.setOnMouseExited(e -> cancelButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30; -fx-font-size: 20")); // Возвращаем белый цвет
         HBox.setMargin(cancelButton, new Insets(20,0,0,144));
 
-        buttons.getChildren().addAll(createButton, cancelButton);
 
         fields.getChildren().addAll(monopoly, nameAndText, color, buttons);
 

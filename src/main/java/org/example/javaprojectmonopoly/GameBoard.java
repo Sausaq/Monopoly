@@ -25,10 +25,10 @@ import java.util.Scanner;
 public class GameBoard extends GridPane {
     private int countOfPlayers;
     private ArrayList<Player> players = new ArrayList<>();
-    private Button moveButton = new Button("Move");
-    private Button buyButton = new Button("Buy");
-    private Button payButton = new Button("Pay");
-    private Button continueButton = new Button("Continue");
+    private MyButton moveButton = new MyButton("Move", 200, 60);
+    private MyButton buyButton = new MyButton("Buy", 200, 60);
+    private MyButton payButton = new MyButton("Pay", 200, 60);
+    private MyButton continueButton = new MyButton("Continue", 200, 60);
     private HBox avatarAndButtons;
     private VBox buttons;
     private ArrayList<Transaction> transactions = new ArrayList<>();
@@ -45,51 +45,51 @@ public class GameBoard extends GridPane {
     private Label nameLabel;
 
     {
-        companies.add(new Company(1, 0, 0, Flags.getStart() , false));
+        companies.add(new Company(1, 0, 0, Images.getStart(),"start", false));
 
-        companies.add(new Company(2, 1, 0, Flags.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp2.png"))), 6000));
-        companies.add(new Company(2, 2, 0, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp3.png"))), 6000));
-        companies.add(new Company(2, 3, 0, Flags.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp4.png"))), 6000));
-        companies.add(new Company(2, 4, 0, Flags.getFlagBritain(), 80000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp5.png"))), 60000));
-        companies.add(new Company(2, 5, 0, false));
-        companies.add(new Company(2, 6, 0, Flags.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp7.png"))), 60000));
-        companies.add(new Company(2, 7, 0, false));
-        companies.add(new Company(2, 8, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp9.png"))), 60000));
-        companies.add(new Company(2, 9, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp10.png"))), 60000));
-        companies.add(new Company(2, 10, 0, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp11.png"))), 60000));
-        companies.add(new Company(2, 11, 0, Flags.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp12.png"))), 60000));
+        companies.add(new Company(2, 1, 0, Images.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp2.png"))), 2000, 50000, new int[]{4000, 10000, 30000, 90000, 160000, 250000}));//RollsRoyce
+        companies.add(new Company(2, 2, 0, Images.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp3.png"))), 2000, 50000, new int[]{4000, 10000, 30000, 90000, 160000, 250000}));//bp
+        companies.add(new Company(2, 3, 0, Images.getFlagBritain(), 60000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp4.png"))), 25000));
+        companies.add(new Company(2, 4, 0, Images.getFlagBritain(), 80000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp5.png"))), 4000, 50000, new int[]{8000, 20000, 60000, 180000, 320000, 450000}));//bbc
+        companies.add(new Company(2, 5, 0, Images.getForce(),"force", false));
+        companies.add(new Company(2, 6, 0, Images.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp7.png"))), 10000));
+        companies.add(new Company(2, 7, 0, Images.getChance(),"chance", false));
+        companies.add(new Company(2, 8, 0, Images.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp9.png"))), 6000, 50000, new int[]{12000, 30000, 90000, 270000, 400000, 550000}));//danone
+        companies.add(new Company(2, 9, 0, Images.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp10.png"))), 6000, 50000, new int[]{12000, 30000, 90000, 270000, 400000, 550000}));//hennessy
+        companies.add(new Company(2, 10, 0, Images.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp11.png"))), 20000));
+        companies.add(new Company(2, 11, 0, Images.getFlagFrance(), 100000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp12.png"))), 8000, 50000, new int[]{16000, 40000, 100000, 300000, 450000, 600000}));//L'oreal
 
-        companies.add(new Company(1, 12, 0,Flags.getPrison() , false));
+        companies.add(new Company(1, 12, 0, Images.getPrison(),"prison", false));
 
-        companies.add(new Company(3, 12, 1, Flags.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp14.png"))), 60000));
-        companies.add(new Company(3, 12, 2, Flags.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp15.png"))), 60000));
-        companies.add(new Company(3, 12, 3, Flags.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp16.png"))), 60000));
-        companies.add(new Company(3, 12, 4, false));
-        companies.add(new Company(3, 12, 5, Flags.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp18.png"))), 60000));
-        companies.add(new Company(3, 12, 6, Flags.getFlagItaly(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp19.png"))), 60000));
+        companies.add(new Company(3, 12, 1, Images.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp14.png"))), 10000, 100000, new int[]{20000, 50000, 150000, 450000, 625000, 750000}));//ikea
+        companies.add(new Company(3, 12, 2, Images.getFlagSweden(), 140000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp15.png"))), 10000, 100000, new int[]{20000, 50000, 150000, 450000, 625000, 750000}));//volvo
+        companies.add(new Company(3, 12, 3, Images.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp16.png"))), 14000, 100000, new int[]{28000, 70000, 200000, 550000, 750000, 950000}));//giorgio armani
+        companies.add(new Company(3, 12, 4, Images.getTax(),"tax", false));
+        companies.add(new Company(3, 12, 5, Images.getFlagItaly(), 180000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp18.png"))), 14000, 100000, new int[]{28000, 70000, 200000, 550000, 750000, 950000}));//versace
+        companies.add(new Company(3, 12, 6, Images.getFlagItaly(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp19.png"))), 16000, 100000, new int[]{32000, 80000, 220000, 600000, 800000, 1000000}));//ferrari
 
-        companies.add(new Company(1, 12, 7,Flags.getChill() , false));
+        companies.add(new Company(1, 12, 7, Images.getChill(),"chill", false));
 
-        companies.add(new Company(2, 11, 7, Flags.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp21.png"))), 60000));
-        companies.add(new Company(2, 10, 7, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp22.png"))), 60000));
-        companies.add(new Company(2, 9, 7, Flags.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp23.png"))), 60000));
-        companies.add(new Company(2, 8, 7, Flags.getFlagJapan(), 240000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp24.png"))), 60000));
-        companies.add(new Company(2, 7, 7, false));
-        companies.add(new Company(2, 6, 7, Flags.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp26.png"))), 60000));
-        companies.add(new Company(2, 5, 7, false));
-        companies.add(new Company(2, 4, 7, Flags.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp28.png"))), 60000));
-        companies.add(new Company(2, 3, 7, Flags.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp29.png"))), 60000));
-        companies.add(new Company(2, 2, 7, Flags.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp30.png"))), 60000));
-        companies.add(new Company(2, 1, 7, Flags.getFlagGermany(), 280000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp31.png"))), 60000));
+        companies.add(new Company(2, 11, 7, Images.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp21.png"))), 18000, 150000, new int[]{36000, 90000, 250000, 700000, 875000, 1050000}));//sony
+        companies.add(new Company(2, 10, 7, Images.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp22.png"))), 25000));
+        companies.add(new Company(2, 9, 7, Images.getFlagJapan(), 220000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp23.png"))), 18000, 150000, new int[]{36000, 90000, 250000, 700000, 875000, 1050000}));//canon
+        companies.add(new Company(2, 8, 7, Images.getFlagJapan(), 240000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp24.png"))), 20000, 150000, new int[]{40000, 100000, 300000, 750000, 925000, 1100000}));//toyota
+        companies.add(new Company(2, 7, 7, Images.getForce(),"force", false));
+        companies.add(new Company(2, 6, 7, Images.getFlagKorea(), 150000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp26.png"))), 60000));
+        companies.add(new Company(2, 5, 7, Images.getChance(),"chance", false));
+        companies.add(new Company(2, 4, 7, Images.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp28.png"))), 22000, 150000, new int[]{44000, 110000, 330000, 800000, 975000, 1150000}));//siemens
+        companies.add(new Company(2, 3, 7, Images.getFlagGermany(), 260000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp29.png"))), 22000, 150000, new int[]{44000, 110000, 330000, 800000, 975000, 1150000}));//adidas
+        companies.add(new Company(2, 2, 7, Images.getFlagChina(), 200000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp30.png"))), 25000));
+        companies.add(new Company(2, 1, 7, Images.getFlagGermany(), 280000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp31.png"))), 24000, 150000, new int[]{48000, 120000, 360000, 850000, 1110000, 1200000}));//mercedes
 
-        companies.add(new Company(1, 0, 7,Flags.getCustoms() , false));
+        companies.add(new Company(1, 0, 7, Images.getCustoms(),"custom", false));
 
-        companies.add(new Company(3, 0, 6, Flags.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp33.png"))), 60000));
-        companies.add(new Company(3, 0, 5, Flags.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp34.png"))), 60000));
-        companies.add(new Company(3, 0, 4, Flags.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp35.png"))), 60000));
-        companies.add(new Company(3, 0, 3, false));
-        companies.add(new Company(3, 0, 2, Flags.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp37.png"))), 60000));
-        companies.add(new Company(3, 0, 1, Flags.getFlagUSA(), 400000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp38.png"))), 60000));
+        companies.add(new Company(3, 0, 6, Images.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp33.png"))), 28000, 200000, new int[]{56000, 150000, 450000, 1000000, 1200000, 1400000}));//nestle
+        companies.add(new Company(3, 0, 5, Images.getFlagSwiss(), 320000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp34.png"))), 28000, 200000, new int[]{56000, 150000, 450000, 1000000, 1200000, 1400000}));//rolex
+        companies.add(new Company(3, 0, 4, Images.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp35.png"))), 35000, 200000, new int[]{70000, 175000, 500000, 1100000, 1300000, 1500000}));//mac
+        companies.add(new Company(3, 0, 3, Images.getTax(),"tax", false));
+        companies.add(new Company(3, 0, 2, Images.getFlagUSA(), 350000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp37.png"))), 35000, 200000, new int[]{70000, 175000, 500000, 1100000, 1300000, 1500000}));//Disney
+        companies.add(new Company(3, 0, 1, Images.getFlagUSA(), 400000, new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/Companies/comp38.png"))), 50000, 200000, new int[]{100000, 200000, 600000, 1400000, 1700000, 2000000}));//CocaCola
     }
     private Label dieNumer = new Label();
 
@@ -109,36 +109,17 @@ public class GameBoard extends GridPane {
             player.addPlayerToBoard();
         }
 
-        moveButton.setOnAction(event -> {
-            initializeMoveButton();
-        });
-
-        moveButton.setPrefSize(200, 60);
-        moveButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        moveButton.setOnMouseEntered(e -> moveButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        moveButton.setOnMouseExited(e -> moveButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
+        moveButton.setOnAction(event -> initializeMoveButton());
         VBox.setMargin(moveButton, new Insets(32, 0, 0, 20));
 
         buyButton.setOnAction(event -> initializeBuyButton());
-        buyButton.setPrefSize(200, 60);
-        buyButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        buyButton.setOnMouseEntered(e -> buyButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        buyButton.setOnMouseExited(e -> buyButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
         VBox.setMargin(buyButton, new Insets(32, 0, 0, 20));
 
         continueButton.setOnAction(event -> initializeContinueButton());
-        continueButton.setPrefSize(200, 60);
-        continueButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        continueButton.setOnMouseEntered(e -> continueButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        continueButton.setOnMouseExited(e -> continueButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-        VBox.setMargin(continueButton, new Insets(10, 0, 0, 20));
+        VBox.setMargin(continueButton, new Insets(12, 0, 0, 20));
 
         payButton.setOnAction(event -> initializePayButton());
-        payButton.setPrefSize(200, 60);
-        payButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        payButton.setOnMouseEntered(e -> payButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        payButton.setOnMouseExited(e -> payButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-        VBox.setMargin(payButton, new Insets(10, 0, 0, 20));
+        VBox.setMargin(payButton, new Insets(32, 0, 0, 20));
 
         Rectangle buttonsBackground = new Rectangle(450, 270, Color.valueOf("#A6A6A6"));
         buttonsBackground.setStroke(Color.BLACK);
@@ -176,7 +157,7 @@ public class GameBoard extends GridPane {
         avatarAndButtons.setAlignment(Pos.CENTER_LEFT);
 
         StackPane buttonsPane = new StackPane(buttonsBackground, avatarAndButtons);
-        add(buttonsPane, 3, 2);
+        add(buttonsPane, 2, 2);
         setColumnSpan(buttonsPane, 5);
         setRowSpan(buttonsPane, 4);
     }
@@ -185,10 +166,10 @@ public class GameBoard extends GridPane {
         Random rand = new Random();
         int firstRandom = rand.nextInt(6) + 1;
         int secondRandom = rand.nextInt(6) + 1;
+        dieNumer.setText(String.valueOf(firstRandom) + "   " + String.valueOf(secondRandom));
 
         Player currentPlayer = players.get(queue);
-        Company currentCompany = companies.get(currentPlayer.getIndex());
-        dieNumer.setText(String.valueOf(firstRandom) + "   " + String.valueOf(secondRandom));
+        Company nextCompany = companies.get(currentPlayer.getIndex() + firstRandom + secondRandom);
 
         if (queue == 0) {
             players.getFirst().moving(companies, firstRandom, secondRandom);
@@ -203,26 +184,44 @@ public class GameBoard extends GridPane {
         }
 
         buttons.getChildren().remove(moveButton);
-        buttons.getChildren().addAll(buyButton , continueButton, payButton);
+
+        if (nextCompany.isFree()){
+            buttons.getChildren().addAll(buyButton, continueButton);
+        }else if (!nextCompany.isFree()){
+            buttons.getChildren().addAll(payButton, continueButton);
+        }
+        else if(nextCompany.getOtherTypes().equals("chance")){
+            buttons.getChildren().addAll(continueButton);
+            int randomMoney = rand.nextInt(3);
+            switch (randomMoney){
+                case 0:
+                    currentPlayer.setMoney(currentPlayer.getMoney() + 100000);
+                    break;
+                case 1:
+                    currentPlayer.setMoney(currentPlayer.getMoney() + 150000);
+                    break;
+                case 2:
+                    currentPlayer.setMoney(currentPlayer.getMoney() + 200000);
+                    break;
+            }
+        }
+
     }
 
-    private void initializePayButton(){
+    private void initializePayButton() {
         Player currentPlayer = players.get(queue);
         Company currentCompany = companies.get(currentPlayer.getIndex());
 
-        if (currentCompany.isFree() || currentCompany.getAuthor().equals(currentPlayer)){
-            payButton.setDisable(true);
-        }else {
-            currentPlayer.setMoney(currentPlayer.getMoney() - currentCompany.getIncomePrice());
-            ((PlayerInfoPane) userList.getChildren().get(queue)).updatePrice();
-            queue = (queue + 1) % countOfPlayers;
+        currentPlayer.setMoney(currentPlayer.getMoney() - currentCompany.getIncomePrice());
+        ((PlayerInfoPane) userList.getChildren().get(queue)).updatePrice();
+        queue = (queue + 1) % countOfPlayers;
 
-            circle.setFill(Color.valueOf(players.get(queue).getColorCode()));
-            nameLabel.setText(players.get(queue).getName());
-            buttons.getChildren().removeAll(buyButton, continueButton, payButton);
-            buttons.getChildren().add(moveButton);
-        }
+        circle.setFill(Color.valueOf(players.get(queue).getColorCode()));
+        nameLabel.setText(players.get(queue).getName());
+        buttons.getChildren().removeAll(buyButton, continueButton, payButton);
+        buttons.getChildren().add(moveButton);
     }
+
 
     private void initializeContinueButton(){
         queue = (queue + 1) % countOfPlayers;

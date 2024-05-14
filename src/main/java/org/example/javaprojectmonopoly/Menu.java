@@ -16,57 +16,34 @@ import javafx.scene.text.Font;
 import java.util.ArrayList;
 
 public class Menu extends StackPane {
-    private HBox menu;
+    private HBox menu = new HBox();
     private static VBox addedPlayerlist = new VBox();
     private static VBox playerlist = new VBox();
-
     private static Font beaumaris = Font.font(20);
-    private Button newPlayerButton = new Button("Новый игрок");
-    private Button startButton = new Button("Начать игру");
-    private Button changePlayerButton = new Button("Изменить");
-    private Button deletePlayerButton = new Button("Удалить");
     private static Font peaceSans = Font.font(36);
+
+    private MyButton newPlayerButton = new MyButton("Новый игрок", 640, 105, peaceSans);
+    private MyButton startButton = new MyButton("Начать игру", 640, 105, peaceSans);
+    private MyButton changePlayerButton = new MyButton("Изменить", 640, 105, peaceSans);
+    private MyButton deletePlayerButton = new MyButton("Удалить", 640, 105, peaceSans);
 
     private static ArrayList<Player> addedPlayers = new ArrayList<>();
     private static ArrayList<Player> players;
 
     public Menu(ArrayList<Player> players) {
-        Menu.players = players;
         ImageView background = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/background.png")));
-        menu = new HBox();
-        VBox leftSide = new VBox();
+        Menu.players = players;
 
+
+        //Часть кода для левой части меню
         Rectangle leftSideRectangle1 = new Rectangle(726, 473);
         leftSideRectangle1.setFill(Color.valueOf("#A6A6A6"));
         leftSideRectangle1.setArcWidth(50);
         leftSideRectangle1.setArcHeight(50);
 
-
         ImageView monopoly = new ImageView(new Image(getClass().getResourceAsStream("/org/example/javaprojectmonopoly/images/monopoly_icon.jpg")));
-
         monopoly.setFitHeight(91);
         monopoly.setFitWidth(91);
-
-        newPlayerButton.setFont(peaceSans);
-        newPlayerButton.setPrefSize(640, 105);
-        newPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        newPlayerButton.setOnMouseEntered(e -> newPlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        newPlayerButton.setOnMouseExited(e -> newPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-
-        changePlayerButton.setFont(peaceSans);
-        changePlayerButton.setPrefSize(640, 105);
-        changePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        changePlayerButton.setOnMouseEntered(e -> changePlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        changePlayerButton.setOnMouseExited(e -> changePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-
-
-        deletePlayerButton.setFont(peaceSans);
-        deletePlayerButton.setPrefSize(640, 105);
-        deletePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        deletePlayerButton.setOnMouseEntered(e -> deletePlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        deletePlayerButton.setOnMouseExited(e -> deletePlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
-
-
 
         VBox buttons = new VBox(monopoly, newPlayerButton, changePlayerButton, deletePlayerButton);
 
@@ -78,9 +55,7 @@ public class Menu extends StackPane {
         StackPane buttonsPane = new StackPane(leftSideRectangle1, buttons);
         VBox.setMargin(buttonsPane, new Insets(17, 0, 10, 40));
 
-
         Rectangle leftSideRectangle2 = new Rectangle(726, 394);
-
         Rectangle textBack = new Rectangle(676, 63);
         textBack.setFill(Color.valueOf("#FF3131"));
         textBack.setArcWidth(30);
@@ -100,23 +75,15 @@ public class Menu extends StackPane {
         StackPane.setMargin(leftSideRectangle2, new Insets(0, 0, 33, 40));
 
 
-        startButton.setFont(peaceSans);
-        startButton.setPrefSize(726, 100);
-        startButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;");
-        startButton.setOnMouseEntered(e -> startButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Красный при наведении
-        startButton.setOnMouseExited(e -> startButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 5; -fx-border-radius: 30;")); // Возвращаем белый цвет
         VBox.setMargin(startButton, new Insets(10, 0, 0, 45));
 
-
-        leftSide.getChildren().addAll(buttonsPane, addedPlayersPane, startButton);
+        VBox leftSide = new VBox(buttonsPane, addedPlayersPane, startButton);
 
         menu.getChildren().add(leftSide);
         getChildren().addAll(background, menu);
 
-
-
         playerlist.setAlignment(Pos.CENTER);
-        playerlist.setSpacing(10); // Устанавливаем расстояние между StackPane объектами
+        playerlist.setSpacing(10);
         playerlist.setStyle("-fx-background-color: #D9D9D9;");
 
         int i = 0;
@@ -187,7 +154,6 @@ public class Menu extends StackPane {
             StackPane.setMargin(winslabel, new Insets(0,0,0,160));
 
 
-
             Rectangle gamesBackground = new Rectangle(220, 78);
             gamesBackground.setFill(Color.valueOf("#FF3131"));
             gamesBackground.setArcWidth(50);
@@ -209,12 +175,7 @@ public class Menu extends StackPane {
 
             games.setAlignment(Pos.CENTER_LEFT);
 
-            Button addPlayerButton = new Button("+");
-            addPlayerButton.setFont(peaceSans);
-            addPlayerButton.setPrefSize(78, 78);
-            addPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;");
-            addPlayerButton.setOnMouseEntered(e -> addPlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;")); // Красный при наведении
-            addPlayerButton.setOnMouseExited(e -> addPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;")); // Возвращаем белый цвет
+            MyButton addPlayerButton = new MyButton("+", 78, 78, peaceSans);
 
             addPlayerButton.setOnAction(e -> {
                 updateAddedPlayersList(player);
@@ -261,47 +222,47 @@ public class Menu extends StackPane {
 
     private static int i = 1;
     public static void updateAddedPlayersList(Player player) {
-        player.setPlayerNum(i);
-        addedPlayers.add(player);
+        if (i <= 4) {
+            player.setPlayerNum(i);
+            addedPlayers.add(player);
 
-        HBox addedPlayer = new HBox();
-        Rectangle numberTextBack = new Rectangle(58, 58);
-        numberTextBack.setFill(Color.valueOf("#FF3131"));
-        numberTextBack.setArcWidth(30);
-        numberTextBack.setArcHeight(30);
-        Label numberText = new Label(String.valueOf(i));
-        numberText.setFont(beaumaris);
-        StackPane number = new StackPane(numberTextBack, numberText);
+            HBox addedPlayer = new HBox();
+            Rectangle numberTextBack = new Rectangle(58, 58);
+            numberTextBack.setFill(Color.valueOf("#FF3131"));
+            numberTextBack.setArcWidth(30);
+            numberTextBack.setArcHeight(30);
+            Label numberText = new Label(String.valueOf(i));
+            numberText.setFont(beaumaris);
+            StackPane number = new StackPane(numberTextBack, numberText);
 
-        Rectangle addedPlayerNameBack = new Rectangle(584, 58);
-        addedPlayerNameBack.setFill(Color.valueOf("#EFB800"));
-        addedPlayerNameBack.setArcWidth(30);
-        addedPlayerNameBack.setArcHeight(30);
-        Label AddedPlayerNameText = new Label(player.getName());
-        AddedPlayerNameText.setFont(beaumaris);
-        StackPane addedPlayerName = new StackPane(addedPlayerNameBack, AddedPlayerNameText);
+            Rectangle addedPlayerNameBack = new Rectangle(584, 58);
+            addedPlayerNameBack.setFill(Color.valueOf("#EFB800"));
+            addedPlayerNameBack.setArcWidth(30);
+            addedPlayerNameBack.setArcHeight(30);
+            Label AddedPlayerNameText = new Label(player.getName());
+            AddedPlayerNameText.setFont(beaumaris);
+            StackPane addedPlayerName = new StackPane(addedPlayerNameBack, AddedPlayerNameText);
 
 
-        VBox.setMargin(addedPlayer, new Insets(0, 0, 0, 30));
-        HBox.setMargin(number, new Insets(10, 0, 0, 30));
-        HBox.setMargin(addedPlayerName, new Insets(10, 0, 0, 30));
+            VBox.setMargin(addedPlayer, new Insets(0, 0, 0, 30));
+            HBox.setMargin(number, new Insets(10, 0, 0, 30));
+            HBox.setMargin(addedPlayerName, new Insets(10, 0, 0, 30));
 
-        addedPlayer.getChildren().addAll(number, addedPlayerName);
+            addedPlayer.getChildren().addAll(number, addedPlayerName);
 
-        addedPlayerlist.getChildren().add(addedPlayer);
+            addedPlayerlist.getChildren().add(addedPlayer);
+        }
         i++;
     }
 
+    private static int j = 1;
     public static void updatePlayersList(Player player) {
-        if (players.contains(player)){
-
-        }
         players.add(player);
         Rectangle rec = new Rectangle(900, 200);
         rec.setStroke(Color.BLACK);
         rec.setStrokeWidth(2);
-        i++;
-        if (i % 2 == 0) {
+        j++;
+        if (j % 2 == 0) {
             rec.setFill(Color.valueOf("#EFB800"));
         }else{
             rec.setFill(Color.valueOf("#FFE17C"));
@@ -362,8 +323,6 @@ public class Menu extends StackPane {
         StackPane.setMargin(corona, new Insets(0,0,0,30));
         StackPane.setMargin(winslabel, new Insets(0,0,0,160));
 
-
-
         Rectangle gamesBackground = new Rectangle(220, 78);
         gamesBackground.setFill(Color.valueOf("#FF3131"));
         gamesBackground.setArcWidth(50);
@@ -385,12 +344,8 @@ public class Menu extends StackPane {
 
         games.setAlignment(Pos.CENTER_LEFT);
 
-        Button addPlayerButton = new Button("+");
+        MyButton addPlayerButton = new MyButton("+", 78, 78);
         addPlayerButton.setFont(peaceSans);
-        addPlayerButton.setPrefSize(78, 78);
-        addPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;");
-        addPlayerButton.setOnMouseEntered(e -> addPlayerButton.setStyle("-fx-background-color: #EFB800; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;")); // Красный при наведении
-        addPlayerButton.setOnMouseExited(e -> addPlayerButton.setStyle("-fx-background-color: #FFBD59; -fx-background-radius: 30; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 30;")); // Возвращаем белый цвет
 
         addPlayerButton.setOnAction(e -> {
             updateAddedPlayersList(player);

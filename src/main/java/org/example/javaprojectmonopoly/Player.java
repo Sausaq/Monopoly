@@ -96,12 +96,7 @@ public class Player extends StackPane {
             double endLayoutX = nextCompany.getLayoutX();
             double endLayoutY = nextCompany.getLayoutY();
 
-            System.out.println(firstIndex + " " + secondIndex);
-            System.out.println(getTranslateX() + " " + getTranslateY());
-            System.out.println(endLayoutX + " " + endLayoutY);
 
-
-            // Moving
             if (firstIndex <= 11 && secondIndex >= 13 && secondIndex <= 19) {
                 transition.setToX(companies.get(12).getLayoutX());
 
@@ -150,7 +145,6 @@ public class Player extends StackPane {
                         transition3.setToX(endLayoutX);
                         transition3.play();
                     });
-
                 });
 
             } else if (firstIndex <= 37 && firstIndex >= 31 && secondIndex <= 11) {
@@ -159,9 +153,7 @@ public class Player extends StackPane {
                 transition.play();
                 transition.setOnFinished(event -> {
                     transition2.setToX(endLayoutX);
-
                     transition2.play();
-
                 });
             } else {
                 transition.setFromX(getTranslateX());
@@ -171,7 +163,6 @@ public class Player extends StackPane {
                 transition.setToY(endLayoutY);
                 transition.play();
             }
-
             pause.playFromStart();
         }
     }

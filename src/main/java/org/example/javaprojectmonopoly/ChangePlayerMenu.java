@@ -108,7 +108,6 @@ public class ChangePlayerMenu extends StackPane {
         colorChoose.setMaxSize(700, 90);
         colorChoose.setStyle("-fx-background-color: #545454;");
 
-
         StackPane colorChooseField = new StackPane(colorChooseBack, colorChoose);
 
 
